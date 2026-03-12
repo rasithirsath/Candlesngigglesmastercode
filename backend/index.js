@@ -8,21 +8,24 @@ const userRoutes = require("./routes/user");
 const orderRoutes = require("./routes/orders");
 const adminOrders = require("./routes/adminOrders");
 
-const app = express(); // ✅ CREATE APP FIRST
+const app = express();
 
 // Middleware
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
+      "http://localhost:8080",
       "https://gilded-glow-experience-main.onrender.com",
     ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   }),
 );
+
 app.use(express.json());
 
-// Health check (SAFE)
+// Health check
 app.get("/health", (req, res) => {
   res.json({ status: "OK" });
 });
@@ -39,13 +42,12 @@ app.use("/api/rewards", require("./routes/rewards"));
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/reviews", reviewRoutes);
 app.use("/api/admin", adminOrders);
-//ADMIN ROUTES
 app.use("/api/admin", require("./routes/admin"));
 
 // Start server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);
 });
