@@ -1,94 +1,128 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const PaymentSuccess = () => {
-  const [isAnimating, setIsAnimating] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsAnimating(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6">
-      <div className="text-center max-w-lg">
-        {/* Candle Animation */}
+    <div className="min-h-screen bg-[#050505] flex items-center justify-center overflow-hidden relative">
+      {/* GOLD DUST PARTICLES */}
+      {[...Array(40)].map((_, i) => (
         <motion.div
-          initial={{ scale: 0, opacity: 0 }}
+          key={i}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: [0, 0.8, 0], y: -200 }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            delay: i * 0.15,
+          }}
+          className="absolute w-[2px] h-[2px] bg-primary rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            bottom: "-20px",
+          }}
+        />
+      ))}
+
+      {/* CENTER CONTENT */}
+      <div className="text-center relative z-10">
+        {/* CANDLE */}
+        <motion.div
+          initial={{ scale: 0.7, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-32 h-48 mx-auto mb-12"
+          transition={{ duration: 1.4, ease: "easeOut" }}
+          className="relative mx-auto mb-20 w-[140px] h-[240px]"
         >
-          {/* Candle Body */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-32 bg-gradient-to-b from-ivory to-ivory/80 rounded-t-md" />
+          {/* candle glow */}
+          <div className="absolute -inset-20 bg-primary/10 blur-[120px] rounded-full" />
 
-          {/* Wick */}
-          <div className="absolute bottom-32 left-1/2 -translate-x-1/2 w-1 h-4 bg-charcoal-medium" />
+          {/* candle body */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90px] h-[170px] bg-gradient-to-b from-[#f7f2e9] to-[#e4dccb] rounded-t-md shadow-[0_20px_60px_rgba(0,0,0,0.6)]" />
 
-          {/* Flame */}
+          {/* wick */}
+          <div className="absolute bottom-[170px] left-1/2 -translate-x-1/2 w-[4px] h-[14px] bg-black rounded" />
+
+          {/* flame */}
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="absolute bottom-36 left-1/2 -translate-x-1/2"
+            transition={{ delay: 1.2, duration: 0.7 }}
+            className="absolute bottom-[180px] left-1/2 -translate-x-1/2"
           >
             <motion.div
               animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.8, 1, 0.8],
+                scale: [1, 1.15, 1],
+                rotate: [0, 2, -2, 0],
               }}
               transition={{
-                duration: 1.5,
+                duration: 2.5,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
               className="relative"
             >
-              {/* Outer Glow */}
-              <div className="absolute -inset-8 bg-primary/20 rounded-full blur-2xl" />
-              {/* Flame Shape */}
+              {/* flame glow */}
+              <div className="absolute -inset-14 bg-[#d4af37]/30 blur-[80px] rounded-full" />
+
+              {/* flame */}
               <div
-                className="w-6 h-10 bg-gradient-to-t from-primary via-gold-light to-ivory rounded-full transform -translate-y-2"
-                style={{ clipPath: "ellipse(50% 70% at 50% 100%)" }}
+                className="w-[18px] h-[34px] bg-gradient-to-t from-[#d4af37] via-[#f3d88b] to-[#fff6cc] rounded-full"
+                style={{
+                  clipPath: "ellipse(50% 70% at 50% 100%)",
+                }}
               />
-              {/* Inner Flame */}
+
+              {/* inner flame */}
               <div
-                className="absolute inset-0 w-3 h-6 mx-auto mt-2 bg-gradient-to-t from-ivory to-transparent rounded-full"
-                style={{ clipPath: "ellipse(50% 70% at 50% 100%)" }}
+                className="absolute top-[8px] left-1/2 -translate-x-1/2 w-[10px] h-[18px] bg-white/80 rounded-full"
+                style={{
+                  clipPath: "ellipse(50% 70% at 50% 100%)",
+                }}
               />
             </motion.div>
           </motion.div>
-
-          {/* Warm Light Spread */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 0.3, scale: 2 }}
-            transition={{ delay: 1.5, duration: 1.5 }}
-            className="absolute bottom-36 left-1/2 -translate-x-1/2 w-40 h-40 bg-primary rounded-full blur-3xl"
-          />
         </motion.div>
 
-        {/* Success Message */}
+        {/* SUCCESS TEXT */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.8 }}
+          transition={{ delay: 2, duration: 1 }}
         >
-          <h1 className="text-3xl md:text-4xl font-light tracking-[0.1em] text-primary mb-4">
-            Payment Successfully Completed
+          <h1 className="text-[40px] md:text-[52px] tracking-[0.25em] text-primary font-light mb-6">
+            ORDER CONFIRMED
           </h1>
-          <p className="text-foreground/60 font-light mb-8">
-            Thank you for your order. Your candles will be on their way soon.
+
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "120px" }}
+            transition={{ delay: 2.3, duration: 1 }}
+            className="h-[1px] bg-primary/40 mx-auto mb-8"
+          />
+
+          <p className="text-white/70 max-w-md mx-auto leading-relaxed mb-10">
+            Your candle experience has begun. Our artisans are preparing your
+            order with care.
           </p>
+
           <Link to="/">
-            <Button variant="luxuryOutline" size="lg">
+            <Button
+              variant="luxuryOutline"
+              size="lg"
+              className="tracking-[0.2em] px-10"
+            >
               Continue Shopping
             </Button>
           </Link>
         </motion.div>
       </div>
+
+      {/* SUBTLE LIGHT BEAM */}
+      <motion.div
+        animate={{ opacity: [0, 0.3, 0] }}
+        transition={{ duration: 6, repeat: Infinity }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,#d4af3720,transparent_60%)]"
+      />
     </div>
   );
 };
