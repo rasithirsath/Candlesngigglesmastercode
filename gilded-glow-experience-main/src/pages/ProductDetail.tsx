@@ -112,7 +112,7 @@ const ProductDetail = () => {
     const fetchReviews = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/reviews/${product.id}`,
+          `https://backend-jdug.onrender.com/api/reviews/${product.id}`,
         );
 
         const data = await res.json();
@@ -179,18 +179,21 @@ const ProductDetail = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/reviews/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        "https://backend-jdug.onrender.com/api/reviews/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            productId: product.id,
+            rating,
+            comment: reviewText,
+          }),
         },
-        body: JSON.stringify({
-          productId: product.id,
-          rating,
-          comment: reviewText,
-        }),
-      });
+      );
 
       const data = await res.json();
 

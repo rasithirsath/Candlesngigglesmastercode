@@ -7,7 +7,7 @@ const ProfileInfo = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:5000/api/user/profile", {
+    fetch("https://backend-jdug.onrender.com/api/user/profile", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

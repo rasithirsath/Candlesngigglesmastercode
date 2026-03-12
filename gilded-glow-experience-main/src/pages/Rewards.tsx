@@ -67,7 +67,7 @@ const Rewards = () => {
         const token = localStorage.getItem("token");
 
         const res = await fetch(
-          "http://localhost:5000/api/rewards/my-redemptions",
+          "https://backend-jdug.onrender.com/api/rewards/my-redemptions",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -149,17 +149,20 @@ const Rewards = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:5000/api/rewards/redeem", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        "https://backend-jdug.onrender.com/api/rewards/redeem",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            experienceName: experience,
+            sparksRequired: sparks,
+          }),
         },
-        body: JSON.stringify({
-          experienceName: experience,
-          sparksRequired: sparks,
-        }),
-      });
+      );
 
       const data = await res.json();
 

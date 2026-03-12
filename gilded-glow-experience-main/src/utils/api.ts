@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API = "https://backend-jdug.onrender.com/api";
 
 export const signup = async (data: {
   name: string;

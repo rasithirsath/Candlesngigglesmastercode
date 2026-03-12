@@ -10,7 +10,7 @@ const Orders = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:5000/api/admin/orders", {
+    fetch("https://backend-jdug.onrender.com/api/admin/orders", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

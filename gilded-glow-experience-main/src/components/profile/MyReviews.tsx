@@ -5,7 +5,7 @@ const Reviews = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/reviews/my", {
+    fetch("https://backend-jdug.onrender.com/api/reviews/my", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
