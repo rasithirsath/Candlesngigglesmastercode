@@ -1,19 +1,13 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,              // use 587 (not 465)
-  secure: false,          // STARTTLS
+  host: "smtp.sendgrid.net",
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,  // Gmail App Password
+    user: "apikey", // this must literally be the word "apikey"
+    pass: process.env.SENDGRID_API_KEY,
   },
-  tls: {
-    rejectUnauthorized: false,
-  },
-  connectionTimeout: 30000,
-  greetingTimeout: 30000,
-  socketTimeout: 30000,
 });
 
 const sendMail = async ({ to, subject, html }) => {
@@ -21,7 +15,7 @@ const sendMail = async ({ to, subject, html }) => {
     console.log("📧 Sending email to:", to);
 
     const info = await transporter.sendMail({
-      from: `"Candles & Giggles" <${process.env.EMAIL_USER}>`,
+      from: "rasithworkspace@gmail.com", // sender email
       to,
       subject,
       html,
