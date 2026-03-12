@@ -149,21 +149,31 @@ router.post("/verify-payment", auth, async (req, res) => {
 
   // 📧 Send customer email to LOGGED-IN USER'S email (not checkout form email)
   console.log(`📧 Sending order confirmation to logged-in user: ${userEmail}`);
-  await sendMail({
-    to: userEmail,
-    subject: "Your Gilded Glow Order is Confirmed ✨",
-    html: customerTemplate(order, pointsData),
-  });
+  try {
+    console.log("📧 Sending customer email...");
+    await sendMail({
+      to: userEmail,
+      subject: "Your Gilded Glow Order is Confirmed ✨",
+      html: customerTemplate(order, pointsData),
+    });
 
-  // 📧 Send admin email
-  await sendMail({
-    to: process.env.ADMIN_EMAIL,
-    subject: "New Order Received – Gilded Glow",
-    html: adminTemplate(order),
-  });
+    console.log("📧 Sending admin email...");
+    await sendMail({
+      to: process.env.ADMIN_EMAIL,
+      subject: "New Order Received – Gilded Glow",
+      html: adminTemplate(order),
+    });
 
+    console.log("✅ Emails sent successfully");
+  } catch (err) {
+    console.error("❌ Email failed:", err.message);
+  }
   const updatedUser = await User.findById(req.user.id).select("-password");
-  res.json({ success: true, user: updatedUser });
+
+  return res.json({
+    success: true,
+    user: updatedUser,
+  });
 });
 
 module.exports = router;

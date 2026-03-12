@@ -195,8 +195,9 @@ const Checkout = () => {
           );
 
           if (!verifyRes.ok) {
-            toast.error("Payment verification request failed");
-
+            const text = await verifyRes.text();
+            console.error("Verify API failed:", text);
+            toast.error("Payment verification failed");
             return;
           }
 
