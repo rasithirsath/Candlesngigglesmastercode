@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const connectDB = require("./config/db");
+
 const reviewRoutes = require("./routes/review");
 const userRoutes = require("./routes/user");
 const orderRoutes = require("./routes/orders");
@@ -10,19 +11,35 @@ const adminOrders = require("./routes/adminOrders");
 
 const app = express();
 
-// Middleware
+// Allowed origins
+const allowedOrigins = [
+  "http://localhost:8080",
+  "https://gilded-glow-experience-main.onrender.com",
+];
+
+// CORS middleware
 app.use(
   cors({
-    origin: [
-      "http://localhost:8080",
-      "https://gilded-glow-experience-main.onrender.com",
-    ],
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   }),
 );
 
+// Handle preflight requests
+app.options("*", cors());
+
+// Body parser
 app.use(express.json());
 
 // Health check
@@ -30,7 +47,7 @@ app.get("/health", (req, res) => {
   res.json({ status: "OK" });
 });
 
-// Connect DB
+// Connect Database
 connectDB();
 
 // Routes

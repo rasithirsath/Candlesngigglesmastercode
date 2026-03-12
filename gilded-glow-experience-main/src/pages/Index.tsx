@@ -102,7 +102,7 @@ const Index = () => {
             preload="metadata"
             className="w-full h-full object-cover"
           >
-            <source src="/public/hero-video.mp4" type="video/mp4" />
+            <source src="/hero-video.mp4" type="video/mp4" />
           </video>
 
           {/* Overlay Gradient */}
