@@ -167,7 +167,12 @@ const Rewards = () => {
       const data = await res.json();
 
       if (data.success) {
-        addRewardPoints(-sparks);
+        const updatedUser = {
+          ...user,
+          rewardPoints: data.remainingPoints,
+        };
+
+        localStorage.setItem("user", JSON.stringify(updatedUser));
 
         setPurchasedExperiences((prev) => [...prev, experience]);
 

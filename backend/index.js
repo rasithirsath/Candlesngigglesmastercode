@@ -53,7 +53,7 @@ connectDB();
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/payment", require("./routes/payment"));
 app.use("/api/payment/webhook", require("./routes/webhook"));
-app.use("/api/users", userRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/rewards", require("./routes/rewards"));
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/orders", orderRoutes);
