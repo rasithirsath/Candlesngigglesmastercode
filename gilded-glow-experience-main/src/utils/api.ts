@@ -1,4 +1,4 @@
-const API = "https://backend-jdug.onrender.com/api";
+const API = "https://backend-wghd.onrender.com/api";
 
 export const signup = async (data: {
   name: string;

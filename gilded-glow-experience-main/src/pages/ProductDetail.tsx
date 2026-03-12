@@ -112,7 +112,7 @@ const ProductDetail = () => {
     const fetchReviews = async () => {
       try {
         const res = await fetch(
-          `https://backend-jdug.onrender.com/api/reviews/${product.id}`,
+          `https://backend-wghd.onrender.com/api/reviews/${product.id}`,
         );
 
         const data = await res.json();
@@ -180,7 +180,7 @@ const ProductDetail = () => {
 
     try {
       const res = await fetch(
-        "https://backend-jdug.onrender.com/api/reviews/add",
+        "https://backend-wghd.onrender.com/api/reviews/add",
         {
           method: "POST",
           headers: {

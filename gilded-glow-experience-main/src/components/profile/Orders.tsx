@@ -8,7 +8,7 @@ const Orders = () => {
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        "https://backend-jdug.onrender.com/api/orders/my",
+        "https://backend-wghd.onrender.com/api/orders/my",
         {
           headers: {
             Authorization: `Bearer ${token}`,

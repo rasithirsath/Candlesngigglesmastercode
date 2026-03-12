@@ -119,7 +119,7 @@ const Checkout = () => {
 
     // 1️⃣ Create order from backend
     const orderRes = await fetch(
-      "https://backend-jdug.onrender.com/api/payment/create-order",
+      "https://backend-wghd.onrender.com/api/payment/create-order",
       {
         method: "POST",
         headers: {
@@ -166,7 +166,7 @@ const Checkout = () => {
 
           // 3️⃣ Verify payment on backend
           const verifyRes = await fetch(
-            "https://backend-jdug.onrender.com/api/payment/verify-payment",
+            "https://backend-wghd.onrender.com/api/payment/verify-payment",
             {
               method: "POST",
 

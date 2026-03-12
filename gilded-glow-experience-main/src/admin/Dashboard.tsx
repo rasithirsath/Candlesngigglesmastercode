@@ -23,7 +23,7 @@ const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("https://backend-jdug.onrender.com/api/admin/stats", {
+    fetch("https://backend-wghd.onrender.com/api/admin/stats", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
