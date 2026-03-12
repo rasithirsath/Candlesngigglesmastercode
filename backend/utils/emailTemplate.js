@@ -88,7 +88,7 @@ We'll notify you once your candles are shipped 🕯️
 <tr>
 <td style="background:#000;padding:25px;text-align:center;color:#777;font-size:12px">
 
-<p>Gilded Glow Candle Co.</p>
+<p>Candles & Giggles</p>
 <p>Crafted Luxury Candles</p>
 
 </td>
@@ -111,7 +111,7 @@ New Order Received
 </h1>
 
 <p style="color:#aaa;margin-top:5px">
-Gilded Glow Admin Notification
+ Admin Notification
 </p>
 
 </td>
@@ -224,7 +224,7 @@ Payment ID: ${order.razorpayPaymentId}
 <tr>
 <td style="background:#000;padding:20px;text-align:center;color:#666;font-size:12px">
 
-<p>Admin Notification • Gilded Glow Candle Co.</p>
+<p>Admin Notification • Candles & Giggles</p>
 
 </td>
 </tr>

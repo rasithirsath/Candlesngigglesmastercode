@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 
 const sendMail = async ({ to, subject, html }) => {
   await transporter.sendMail({
-    from: `"Gilded Glow Candles" <${process.env.EMAIL_USER}>`,
+    from: `"Candles & Giggles" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     html,
@@ -24,7 +24,7 @@ const sendMail = async ({ to, subject, html }) => {
 //send mail to admin
 const sendmail = async ({ to, subject, html }) => {
   await transporter.sendMail({
-    from: `"Gilded Glow Candles" <${process.env.ADMIN_EMAIL}>`,
+    from: `"Candles & Giggles" <${process.env.ADMIN_EMAIL}>`,
     to,
     subject,
     html,
