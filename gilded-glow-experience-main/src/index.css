@@ -1,0 +1,299 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Luxury Charcoal & Gold Palette */
+    --background: 0 0% 4%;
+    --foreground: 45 20% 90%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 45 20% 90%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 45 20% 90%;
+
+    --primary: 43 45% 59%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 45 20% 90%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 45 10% 60%;
+
+    --accent: 43 45% 59%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 45 20% 90%;
+
+    --border: 43 20% 20%;
+    --input: 0 0% 12%;
+    --ring: 43 45% 59%;
+
+    --radius: 0.25rem;
+
+    /* Custom Luxury Tokens */
+    --gold: 43 45% 59%;
+    --gold-light: 43 50% 70%;
+    --gold-dark: 43 40% 45%;
+    --charcoal: 0 0% 4%;
+    --charcoal-light: 0 0% 8%;
+    --charcoal-medium: 0 0% 12%;
+    --ivory: 45 20% 90%;
+    --ivory-muted: 45 10% 60%;
+
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(43 45% 59%), hsl(43 50% 70%));
+    --gradient-glow: radial-gradient(
+      circle,
+      hsl(43 45% 59% / 0.3) 0%,
+      transparent 70%
+    );
+    --gradient-hero: linear-gradient(
+      180deg,
+      transparent 0%,
+      hsl(0 0% 4% / 0.8) 100%
+    );
+
+    /* Shadows */
+    --shadow-gold: 0 0 30px hsl(43 45% 59% / 0.2);
+    --shadow-card: 0 4px 30px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 60px hsl(43 45% 59% / 0.15);
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 45 20% 90%;
+    --sidebar-primary: 43 45% 59%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 45 20% 90%;
+    --sidebar-border: 43 20% 20%;
+    --sidebar-ring: 43 45% 59%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 45 20% 90%;
+    --card: 0 0% 6%;
+    --card-foreground: 45 20% 90%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 45 20% 90%;
+    --primary: 43 45% 59%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 45 20% 90%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 45 10% 60%;
+    --accent: 43 45% 59%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 45 20% 90%;
+    --border: 43 20% 20%;
+    --input: 0 0% 12%;
+    --ring: 43 45% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-cormorant antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-cormorant tracking-wide;
+  }
+}
+
+@layer components {
+  .text-gold {
+    @apply text-primary;
+  }
+
+  .bg-charcoal {
+    @apply bg-background;
+  }
+
+  .gold-glow {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .gold-border {
+    @apply border border-primary/30;
+  }
+
+  .luxury-card {
+    @apply bg-card border border-primary/10 rounded-sm;
+    box-shadow: var(--shadow-card);
+  }
+
+  .luxury-divider {
+    @apply w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto;
+  }
+
+  .luxury-heading {
+    @apply text-primary font-light tracking-[0.2em] uppercase;
+  }
+
+  .luxury-text {
+    @apply text-foreground/80 font-light leading-relaxed tracking-wide;
+  }
+
+  .glow-effect {
+    @apply relative;
+  }
+
+  .glow-effect::after {
+    content: "";
+    @apply absolute inset-0 opacity-0 transition-opacity duration-700;
+    background: var(--gradient-glow);
+    pointer-events: none;
+  }
+
+  .glow-effect:hover::after {
+    @apply opacity-100;
+  }
+
+  .navbar-glass {
+    @apply backdrop-blur-md bg-background/80;
+  }
+
+  .flame-glow {
+    animation: flameGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes flameGlow {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 20px hsl(43 45% 59% / 0.4));
+    }
+    50% {
+      filter: drop-shadow(0 0 40px hsl(43 45% 59% / 0.6));
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slowPulse {
+    0%,
+    100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1.2s ease-out forwards;
+  }
+
+  .animate-slow-pulse {
+    animation: slowPulse 4s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-shadow-gold {
+    text-shadow: 0 0 30px hsl(43 45% 59% / 0.3);
+  }
+
+  .transition-luxury {
+    @apply transition-all duration-700 ease-out;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-700 ease-out hover:scale-105;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-700;
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--shadow-gold);
+  }
+}
+.react-datepicker {
+  background-color: #0b0b0b !important;
+  border: 1px solid #c8a75b !important;
+  color: #c8a75b !important;
+}
+
+.react-datepicker__header {
+  background-color: #111 !important;
+  border-bottom: 1px solid #c8a75b !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  color: #c8a75b !important;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #ffffff !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #c8a75b !important;
+  color: black !important;
+}
+
+.react-datepicker__month-dropdown,
+.react-datepicker__year-dropdown {
+  background-color: #0b0b0b !important;
+  border: 1px solid #c8a75b !important;
+}
+
+.react-datepicker__month-option,
+.react-datepicker__year-option {
+  color: white !important;
+}
+
+.react-datepicker__month-option--selected,
+.react-datepicker__year-option--selected {
+  background-color: #c8a75b !important;
+  color: black !important;
+}
