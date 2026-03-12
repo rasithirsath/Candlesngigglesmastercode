@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API = "https://gilded-glow-experience-main.onrender.com/api";
 
 const testUser = {
   name: "AI Test User",

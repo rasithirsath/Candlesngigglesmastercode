@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const User = require("./models/user");
 
-mongoose.connect("mongodb://127.0.0.1:27017/gildedglow");
+mongoose.connect(
+  "mongodb+srv://admin:strongpassword123@cluster0.oehtep7.mongodb.net/?appName=Cluster0",
+);
 
 async function createAdmin() {
   const hashedPassword = await bcrypt.hash("admin123", 10);

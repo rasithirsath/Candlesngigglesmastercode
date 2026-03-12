@@ -1,4 +1,4 @@
-$API = 'http://localhost:5000/api'
+$API = 'https://gilded-glow-experience-main.onrender.com/api'
 $testUser = @{ name = 'AI Test User'; email = 'ai-test+user@example.com'; password = 'password123' }
 
 Write-Host '1) Signup (if not exists)'
