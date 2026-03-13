@@ -37,8 +37,8 @@ const Rewards = () => {
   const TIER2_UNLOCK = 5000;
   const TIER3_UNLOCK = 10000;
 
-  const isTier2Unlocked = userTier >= 2;
-  const isTier3Unlocked = userTier >= 3;
+  const isTier2Unlocked = true;
+  const isTier3Unlocked = true;
 
   // Max range for progress bar
   const maxPoints = tierThreeThreshold;
@@ -106,7 +106,7 @@ const Rewards = () => {
 
     setInstagramRewardClaimed(true);
 
-    toast.success("250 Sparks Added 🔥");
+    toast.success("250 Sparks Added ");
 
     // ⭐ Open Instagram
     window.open("https://www.instagram.com/candlesngiggles/", "_blank");
@@ -201,7 +201,7 @@ const Rewards = () => {
     // ✅ Increase only event count
     setEventCount((prev) => prev + 1);
 
-    toast.success("200 Sparks Added ✨");
+    toast.success("200 Sparks Added ");
 
     // Reset fields
     setEventName("");
@@ -213,17 +213,19 @@ const Rewards = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="pt-32 pb-24 px-6">
+      <main className="pt-28 md:pt-32 pb-20 md:pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           {/* HERO */}
 
-          <section className="relative mb-24 overflow-hidden rounded-lg">
+          <section className="relative mb-16 md:mb-24 overflow-hidden rounded-lg px-4 md:px-0">
             <div className="absolute inset-0">
               <div className="absolute inset-0 bg-black/70" />
             </div>
 
             <div className="relative z-10 text-center py-20">
-              <h1 className="text-5xl text-primary mb-6">Giggle Points</h1>
+              <h1 className="text-3xl md:text-5xl text-primary mb-6">
+                Giggle Points
+              </h1>
 
               <p className="text-foreground/70 mb-10">
                 Earn Sparks. Unlock Experiences.
@@ -231,14 +233,16 @@ const Rewards = () => {
 
               {/* POINT CARD */}
 
-              <div className="luxury-card inline-block px-12 py-6">
+              <div className="luxury-card inline-block px-8 md:px-12 py-5 md:py-6">
                 <img
                   src={sparkIcon}
                   alt="Spark"
                   className="mx-auto w-5 h-10 mb-2"
                 />
 
-                <h2 className="text-5xl text-primary">{rewardPoints}</h2>
+                <h2 className="text-4xl md:text-5xl text-primary">
+                  {rewardPoints}
+                </h2>
 
                 <p>Your Sparks</p>
               </div>
@@ -258,8 +262,8 @@ const Rewards = () => {
           </section>
           {/* ================= MEMBERSHIP PROGRESS ================= */}
 
-          <section className="mb-28">
-            <h2 className="text-center text-3xl tracking-[0.25em] font-light text-primary mb-16">
+          <section className="mb-20 md:mb-28 px-4 md:px-0">
+            <h2 className="text-center text-xl md:text-3xl tracking-[0.2em] md:tracking-[0.25em] font-light text-primary mb-12 md:mb-16">
               YOUR PROGRESSION
             </h2>
 
@@ -310,7 +314,7 @@ const Rewards = () => {
 
             <div className="w-24 h-[1px] bg-primary/40 mx-auto mb-14" />
 
-            <div className="grid md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
               {/* STEP 1 */}
               <div className="luxury-card p-8 text-center">
                 <Flame className="mx-auto text-primary mb-4" size={30} />
@@ -353,12 +357,12 @@ const Rewards = () => {
               STATUS TIERS
             </h2>
 
-            <div className="grid md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
               {/* ================= TIER ONE ================= */}
               <div className="luxury-card p-8">
                 <div className="flex items-center gap-2 mb-4">
                   <Crown className="text-primary" size={22} />
-                  <h3 className="text-primary text-xl">Ember Society</h3>
+                  <h3 className="text-primary text-xl">Ember Tier</h3>
                 </div>
 
                 <p className="text-foreground/60 text-sm italic mb-6">
@@ -430,10 +434,10 @@ const Rewards = () => {
 
               <div className="luxury-card p-10">
                 <h3 className="text-primary text-xl tracking-widest mb-8">
-                  EMBER SOCIETY ARCHIVE
+                  EMBER TIER ARCHIVE
                 </h3>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
                   {/* 🖤 OBSIDIAN */}
 
                   <div>
@@ -576,47 +580,108 @@ ${isTier2Unlocked ? "" : "blur-sm opacity-60"}
 `}
                 >
                   <h3 className="text-primary text-xl mb-4">
-                    VELVET CIRCLE ARCHIVE
+                    VELVET TIER ARCHIVE
                   </h3>
 
                   {isTier2Unlocked ? (
-                    <div className="space-y-3">
-                      <p className="text-foreground/70">
-                        Founder’s Reserve Experience
-                      </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                      {/* MIDNIGHT DISPATCH */}
 
-                      <p className="text-primary">Redeem 9000 Sparks</p>
+                      <div>
+                        <h4 className="text-primary mb-3">
+                          The Midnight Dispatch
+                        </h4>
 
-                      <Button
-                        className="px-8 py-4 whitespace-nowrap"
-                        disabled={
-                          rewardPoints < 9000 ||
-                          purchasedExperiences.includes(
-                            "Founder’s Reserve Experience",
-                          )
-                        }
-                        variant={
-                          purchasedExperiences.includes(
-                            "Founder’s Reserve Experience",
-                          )
-                            ? "luxuryOutline"
-                            : "heroFilled"
-                        }
-                        onClick={() =>
-                          setConfirmExperience({
-                            name: "Founder’s Reserve Experience",
-                            sparks: 9000,
-                          })
-                        }
-                      >
-                        {purchasedExperiences.includes(
-                          "Founder’s Reserve Experience",
-                        )
-                          ? "Purchased"
-                          : rewardPoints >= 9000
-                            ? "Unlock Experience"
-                            : "Insufficient Sparks"}
-                      </Button>
+                        <p className="text-sm text-foreground/70 mb-3">
+                          A secret candle released on random nights.
+                        </p>
+
+                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                          <li>• Velvet members only</li>
+                          <li>• Available for 3 hours</li>
+                          <li>• Never released again</li>
+                        </ul>
+
+                        <p className="text-primary mb-4">Redeem 9,000 Sparks</p>
+
+                        <Button
+                          variant="heroFilled"
+                          onClick={() =>
+                            setConfirmExperience({
+                              name: "Midnight Dispatch",
+                              sparks: 9000,
+                            })
+                          }
+                        >
+                          Unlock Experience
+                        </Button>
+                      </div>
+
+                      {/* COLLECTOR CARD */}
+
+                      <div>
+                        <h4 className="text-primary mb-3">
+                          The Collector Card
+                        </h4>
+
+                        <p className="text-sm text-foreground/70 mb-3">
+                          A collectible philosophy card sent with each order.
+                        </p>
+
+                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                          <li>• Limited art cards</li>
+                          <li>• 10 cards unlock a reward candle</li>
+                          <li>• Gamified collecting</li>
+                        </ul>
+
+                        <p className="text-primary mb-4">Redeem 9,500 Sparks</p>
+
+                        <Button
+                          variant="heroFilled"
+                          onClick={() =>
+                            setConfirmExperience({
+                              name: "Collector Card",
+                              sparks: 9500,
+                            })
+                          }
+                        >
+                          Unlock Experience
+                        </Button>
+                      </div>
+
+                      {/* MATCHBOX EDITIONS */}
+
+                      <div>
+                        <h4 className="text-primary mb-3">
+                          The Matchbox Editions
+                        </h4>
+
+                        <p className="text-sm text-foreground/70 mb-3">
+                          Artistic matchboxes released in collectible designs.
+                        </p>
+
+                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                          <li>• Seasonal designs</li>
+                          <li>• Members only</li>
+                          <li>• Collect the full series</li>
+                        </ul>
+
+                        <p className="text-primary mb-4">
+                          Redeem 10,000 Sparks
+                        </p>
+
+                        <Button
+                          variant="heroFilled"
+                          onClick={() =>
+                            setConfirmExperience({
+                              name: "Matchbox Editions",
+                              sparks: 10000,
+                            })
+                          }
+                        >
+                          Unlock Experience
+                        </Button>
+                      </div>
                     </div>
                   ) : (
                     <p className="text-foreground/60">
@@ -633,6 +698,7 @@ ${isTier2Unlocked ? "" : "blur-sm opacity-60"}
                   </div>
                 )}
               </div>
+
               {/* ======================= TIER 3 LOCKED ======================= */}
 
               <div className="relative">
@@ -641,29 +707,107 @@ ${isTier2Unlocked ? "" : "blur-sm opacity-60"}
 ${isTier3Unlocked ? "" : "blur-sm opacity-60"}
 `}
                 >
-                  <h3 className="text-primary text-xl mb-4">
-                    OBSIDIAN ORDER ARCHIVE
+                  <h3 className="text-primary text-xl mb-8">
+                    OBSIDIAN TIER ARCHIVE
                   </h3>
 
                   {isTier3Unlocked ? (
-                    <div>
-                      <p className="text-foreground/70">
-                        Collector Box Experience
-                      </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                      {/* OBSIDIAN ATELIER */}
 
-                      <p className="text-primary">Redeem 12000 Sparks</p>
+                      <div>
+                        <h4 className="text-primary mb-3">The Scent Jury</h4>
 
-                      <Button
-                        variant="heroFilled"
-                        onClick={() =>
-                          handleUnlockExperience(
-                            "Collector Box Experience",
-                            12000,
-                          )
-                        }
-                      >
-                        Unlock Experience
-                      </Button>
+                        <p className="text-sm text-foreground/70 mb-3">
+                          Members vote on the next fragrance release.
+                        </p>
+
+                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                          <li>• Influence future collections</li>
+                          <li>• Vote on scent direction</li>
+                          <li>• Receive the first batch</li>
+                        </ul>
+
+                        <p className="text-primary mb-4">
+                          Redeem 12,000 Sparks
+                        </p>
+
+                        <Button
+                          variant="heroFilled"
+                          onClick={() =>
+                            handleUnlockExperience(
+                              "The Obsidian Atelier",
+                              12000,
+                            )
+                          }
+                        >
+                          Unlock Experience
+                        </Button>
+                      </div>
+
+                      {/* SECRET MENU */}
+
+                      <div>
+                        <h4 className="text-primary mb-3">The Secret Menu</h4>
+
+                        <p className="text-sm text-foreground/70 mb-3">
+                          Hidden experimental products.
+                        </p>
+
+                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                          <li>• Prototype scents</li>
+                          <li>• Archive labels</li>
+                          <li>• Studio experiments</li>
+                        </ul>
+
+                        <p className="text-primary mb-4">
+                          Redeem 13,000 Sparks
+                        </p>
+
+                        <Button
+                          variant="heroFilled"
+                          onClick={() =>
+                            handleUnlockExperience("Secret Menu", 13000)
+                          }
+                        >
+                          Unlock Experience
+                        </Button>
+                      </div>
+
+                      {/* SCENT JURY */}
+
+                      <div>
+                        <h4 className="text-primary mb-3">
+                          The Obsidian Atelier
+                        </h4>
+
+                        <p className="text-sm text-foreground/70 mb-3">
+                          Design a candle with the studio.
+                        </p>
+
+                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                          <li>• Choose scent direction</li>
+                          <li>• Choose wax color</li>
+                          <li>• Choose label quote</li>
+                        </ul>
+
+                        <p className="text-sm text-foreground/60 mb-3">
+                          A small batch will be produced named after you.
+                        </p>
+
+                        <p className="text-primary mb-4">
+                          Redeem 14,000 Sparks
+                        </p>
+
+                        <Button
+                          variant="heroFilled"
+                          onClick={() =>
+                            handleUnlockExperience("Scent Jury", 14000)
+                          }
+                        >
+                          Unlock Experience
+                        </Button>
+                      </div>
                     </div>
                   ) : (
                     <p className="text-foreground/60">
@@ -697,7 +841,7 @@ ${isTier3Unlocked ? "" : "blur-sm opacity-60"}
               rewards.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {/* REVIEW */}
 
               <motion.div whileHover={{ y: -8 }} transition={{ duration: 0.3 }}>
@@ -871,8 +1015,8 @@ transition-all duration-300 overflow-hidden"
       {/* ================= BIRTHDAY MODAL ================= */}
 
       {showBirthdayModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-6">
-          <div className="luxury-card bg-background border border-primary/20 p-10 w-full max-w-md relative">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="luxury-card bg-background border border-primary/20 p-6 md:p-10 w-full max-w-md relative">
             {/* Close */}
 
             <button
@@ -935,8 +1079,8 @@ focus:border-primary outline-none text-foreground"
       {/* ================= EVENT MODAL ================= */}
 
       {showEventModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-6">
-          <div className="luxury-card bg-background border border-primary/20 p-10 w-full max-w-md relative">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="luxury-card bg-background border border-primary/20 p-6 md:p-10 w-full max-w-md relative">
             <button
               onClick={() => {
                 setShowEventModal(false);

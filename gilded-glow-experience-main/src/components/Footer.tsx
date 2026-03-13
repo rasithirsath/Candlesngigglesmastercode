@@ -1,20 +1,45 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Twitter, Youtube } from "lucide-react";
+import {
+  Instagram,
+  Facebook,
+  Twitter,
+  Youtube,
+  Linkedin,
+  MailCheck,
+  MessageCircle,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Youtube, href: "#", label: "Youtube" },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/candlesngiggles/",
+      label: "Instagram",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/candlesngiggles/posts/?feedView=all",
+      label: "Linkedin",
+    },
+    {
+      icon: MailCheck,
+      href: "https://mail.google.com/mail/?view=cm&fs=1&to=candlesngiggles@gmail.com",
+      label: "mail",
+    },
+    {
+      icon: MessageCircle,
+      href: "https://wa.me/918668198480?text=Hello%20Candles%20and%20Giggles%20I%20want%20to%20know%20about%20your%20candles",
+      label: "WhatsApp",
+    },
+    // { icon: Youtube, href: "#", label: "Youtube" },
   ];
 
   const footerLinks = [
     { name: "Shop", path: "/shop" },
     { name: "About", path: "/about" },
     { name: "Quiz", path: "/quiz" },
-    { name: "Contact", path: "/contact" }, // ✅ FIXED
+    // ✅ FIXED
   ];
 
   return (
@@ -35,14 +60,24 @@ const Footer = () => {
         >
           <Link to="/">
             <h2 className="text-3xl font-light tracking-[0.2em] text-primary text-shadow-gold">
-              candlesngiggles
+              Candles&Giggles
             </h2>
           </Link>
           <p className="text-muted-foreground mt-4 font-light tracking-wide">
             Where emotions meet fragrance
           </p>
         </motion.div>
-
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          viewport={{ once: true }}
+          className="text-center mb-6"
+        >
+          <p className="text-sm uppercase tracking-[0.25em] text-foreground/60 font-light">
+            Reach Us Through These Platforms
+          </p>
+        </motion.div>
         {/* Social Icons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -55,6 +90,8 @@ const Footer = () => {
             <a
               key={label}
               href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
               className="group p-3 border border-primary/20 rounded-full hover:border-primary hover:shadow-[0_0_20px_hsl(43_45%_59%_/_0.2)] transition-all duration-500"
             >
@@ -90,7 +127,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <p className="text-center text-muted-foreground text-sm font-light tracking-wide">
-          © 2025 candlesngiggles. All rights reserved.
+          © 2026 candles&giggles. All rights reserved.
         </p>
       </div>
     </footer>

@@ -67,7 +67,7 @@ const Navbar = () => {
         }`}
       >
         <div className="container mx-auto px-6 py-4">
-          <div className="grid grid-cols-3 items-center">
+          <div className="flex items-center justify-between">
             {/* Desktop Left Links */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
@@ -98,7 +98,7 @@ const Navbar = () => {
                 <img
                   src="/logo/candlesngiggles-logo.png"
                   alt="candlesngiggles logo"
-                  className="h-20 md:h-20 w-25 transition-all duration-500 group-hover:scale-105"
+                  className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto transition-all duration-500 group-hover:scale-105"
                 />
               </Link>
             </div>

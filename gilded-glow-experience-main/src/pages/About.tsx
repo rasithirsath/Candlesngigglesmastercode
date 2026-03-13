@@ -90,7 +90,7 @@ const About = () => {
                 Candles & Giggles didn’t start as a business idea. It started as
                 a problem, a very familiar one. We were searching for a gift for
                 a close friend. Not just any gift, but something that truly
-                reflected who they were — their humour, their memories, and the
+                reflected who they were their humour, their memories, and the
                 bond we shared with them. Something that could make them smile,
                 laugh, or even feel a little emotional.
               </p>

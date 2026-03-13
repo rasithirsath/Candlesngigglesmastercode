@@ -34,25 +34,25 @@ const collectionFragrances: Record<string, string[]> = {
 
   viella: ["Lavender Flower & Vanilla"],
   quotes: [
-    "Neroli Blanc (Neroli) ",
+    "Neroli Blanc  ",
 
-    "Bleu Marine (Ocean) ",
+    "Bleu Marine  ",
 
-    "The Botanique (Tea Tree) ",
+    "The Botanique  ",
 
-    "Vanille Noire (Vanilla) ",
+    "Vanille Noire  ",
 
-    "Oud Imperial (Oudh) ",
+    "Oud Imperial ",
 
-    "Jasmine De Nuit (Jasmine) ",
+    "Jasmine De Nuit  ",
 
-    "Orchard Verte (Green Apple) ",
+    "Orchard Verte  ",
 
-    "Ambre Mystique (Amber) ",
+    "Ambre Mystique ",
 
-    "Eucalyptus Glace (Eucalyptus) ",
+    "Eucalyptus Glace  ",
 
-    "Santal Dore (Sandalwood)",
+    "Santal Dore ",
   ],
 };
 
@@ -61,7 +61,7 @@ const customizationOptions = [
     id: "spotify",
     name: "Spotify Card",
     description: "Add a personalized Spotify playlist card",
-    price: 20,
+    price: 0,
     icon: Music,
   },
   {
@@ -168,7 +168,7 @@ const ProductDetail = () => {
       customizationsTotal,
     });
 
-    toast.success("Added to cart ✨");
+    toast.success("Added to cart ");
   };
   const handleSubmitReview = async () => {
     const token = localStorage.getItem("token");
@@ -204,7 +204,7 @@ const ProductDetail = () => {
 
         addRewardPoints(data.reward); // ⭐ ADD THIS LINE
 
-        toast.success(`Review posted! +${data.reward} Sparks 🔥`);
+        toast.success(`Review posted! +${data.reward} Sparks `);
       } else {
         toast.error(data.message);
       }
@@ -219,20 +219,24 @@ const ProductDetail = () => {
 
       <main className="pt-32 pb-24 px-6">
         <div className="container mx-auto max-w-6xl">
-          <Link to="/shop" className="flex items-center gap-2 mb-12">
+          <Link to="/shop" className="flex items-center gap-2 mb-8 md:mb-12">
             <ArrowLeft size={16} /> Back to Shop
           </Link>
 
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
             <motion.img
               src={product.image}
               alt={product.name}
-              className="w-full aspect-square object-cover rounded-lg"
+              className="w-full aspect-square object-cover rounded-lg shadow-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             />
 
             <div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-primary mb-4 leading-tight">
+                {product.name}
+              </h1>
+
               {/* FRAGRANCE */}
               <div className="mb-6">
                 <label className="block mb-2 text-sm">Select Fragrance</label>
@@ -269,11 +273,11 @@ const ProductDetail = () => {
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center gap-3 border p-4 rounded">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-8">
+                <div className="flex items-center gap-3 border p-3 sm:p-4 rounded">
                   <Flame size={18} /> {selectedFragrance}
                 </div>
-                <div className="flex items-center gap-3 border p-4 rounded">
+                <div className="flex items-center gap-3 border p-3 sm:p-4 rounded">
                   <Clock size={18} /> {product.burnTime}
                 </div>
               </div>
@@ -314,12 +318,12 @@ const ProductDetail = () => {
         </div>
         {/* ================= REVIEWS ================= */}
 
-        <div className="luxury-card p-10 mt-20">
+        <div className="luxury-card p-6 md:p-10 mt-16 md:mt-20">
           <h2 className="text-2xl text-primary mb-8">Customer Reviews</h2>
 
           {/* REVIEW FORM */}
 
-          <div className="border p-6 rounded mb-10">
+          <div className="border p-4 md:p-6 rounded mb-10">
             <h3 className="mb-4">Write a Review</h3>
 
             <div className="flex gap-2 mb-4">

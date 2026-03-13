@@ -59,18 +59,18 @@ const Index = () => {
 
   const testimonials = [
     {
-      name: "Priya Sharma",
-      text: "The Midnight Rose candle transformed our anniversary dinner into a magical experience. The fragrance lingered for days.",
+      name: "Kashish Goyal",
+      text: "Really impressed with the candles and it's quality!! The packaging makes it even more luxury and special.",
       rating: 5,
     },
     {
-      name: "Rahul Kapoor",
-      text: "I gifted the Pure Serenity candle to my mother. She says it helps her unwind after long days. Beautiful packaging too!",
+      name: "Sarah Hameed",
+      text: "Loved the candles! Can really see the effort in the quality and the packaging makes it even more special!",
       rating: 5,
     },
     {
       name: "Ananya Patel",
-      text: "Finally found a candle brand that understands luxury. The Noir Elegance is my go-to for meditation sessions.",
+      text: "Finally found a candle brand that understands luxury. The Pure Ivory Candle from the Viella Collection is my go to for meditation sessions.",
       rating: 5,
     },
   ];
@@ -208,117 +208,129 @@ const Index = () => {
         </div>
       </section>
       {/* Shop By Mood */}
-      <section className="py-24 px-6">
+      <section className="py-16 md:py-24 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           {/* Heading */}
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-light tracking-[0.2em] text-primary mb-4">
+          <div className="text-center mb-14 md:mb-20">
+            <h2 className="text-2xl md:text-4xl font-light tracking-[0.15em] text-primary mb-4">
               Shop By Collections
             </h2>
-            <p className="text-foreground/60 font-light tracking-wide">
+            <p className="text-foreground/60 font-light text-sm md:text-base">
               Find the perfect candle for every emotion
             </p>
           </div>
-          <div className="space-y-10">
+
+          <div className="space-y-6 md:space-y-10">
             {/* Noor */}
-            <div className="relative group overflow-hidden rounded-md h-[220px] md:h-[260px]">
+            <div className="relative group overflow-hidden rounded-md h-[120px] sm:h-[160px] md:h-[200px] lg:h-[220px]cursor-pointer">
               <img
                 src="https://image2url.com/r2/default/images/1773084201370-2145edac-ccf1-4483-abef-5871e36b7c4a.png"
                 alt="Noor"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Link
-                  to="/shop?collection=noor"
-                  className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
-                >
-                  <Button variant="luxuryOutline">View Collection</Button>
+
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-500"></div>
+
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                <Link to="/shop?collection=noor">
+                  <Button variant="luxuryOutline" size="sm">
+                    View Collection
+                  </Button>
                 </Link>
               </div>
             </div>
+
             {/* Zara */}
-            <div className="relative group overflow-hidden rounded-md h-[220px] md:h-[260px]">
+            <div className="relative group overflow-hidden rounded-md h-[120px] sm:h-[160px] md:h-[200px] lg:h-[220px]cursor-pointer">
               <img
                 src="https://image2url.com/r2/default/images/1773084270936-925f3a17-ff80-4cbf-9df2-44e3a85587fa.png"
                 alt="Zara"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Link
-                  to="/shop?collection=zara"
-                  className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
-                >
-                  <Button variant="luxuryOutline">View Collection</Button>
+
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-500"></div>
+
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                <Link to="/shop?collection=zara">
+                  <Button variant="luxuryOutline" size="sm">
+                    View Collection
+                  </Button>
                 </Link>
               </div>
             </div>
+
             {/* Rune */}
-            <div className="relative group overflow-hidden rounded-md h-[220px] md:h-[260px]">
+            <div className="relative group overflow-hidden rounded-md h-[120px] sm:h-[160px] md:h-[200px] lg:h-[220px]cursor-pointer">
               <img
                 src="https://image2url.com/r2/default/images/1773084329484-1409b5e2-3e49-488e-a2db-4c20f2bc3733.png"
                 alt="Rune"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Link
-                  to="/shop?collection=rune"
-                  className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
-                >
-                  <Button variant="luxuryOutline">View Collection</Button>
+
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-500"></div>
+
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                <Link to="/shop?collection=rune">
+                  <Button variant="luxuryOutline" size="sm">
+                    View Collection
+                  </Button>
                 </Link>
               </div>
             </div>
+
             {/* Amara */}
-            <div className="relative group overflow-hidden rounded-md h-[220px] md:h-[260px]">
+            <div className="relative group overflow-hidden rounded-md h-[120px] sm:h-[160px] md:h-[200px] lg:h-[220px]cursor-pointer">
               <img
                 src="https://image2url.com/r2/default/images/1773084374823-693b9240-9f99-427c-b9cf-8c334a428e9c.png"
                 alt="Amara"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Link
-                  to="/shop?collection=amara"
-                  className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
-                >
-                  <Button variant="luxuryOutline">View Collection</Button>
+
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-500"></div>
+
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                <Link to="/shop?collection=amara">
+                  <Button variant="luxuryOutline" size="sm">
+                    View Collection
+                  </Button>
                 </Link>
               </div>
             </div>
+
             {/* Viella */}
-            <div className="relative group overflow-hidden rounded-md h-[220px] md:h-[260px]">
+            <div className="relative group overflow-hidden rounded-md h-[120px] sm:h-[160px] md:h-[200px] lg:h-[220px]cursor-pointer">
               <img
                 src="https://image2url.com/r2/default/images/1773084412896-7dbe00dd-4059-44a7-b4e6-363b656e6c33.png"
                 alt="Viella"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Link
-                  to="/shop?collection=viella"
-                  className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
-                >
-                  <Button variant="luxuryOutline">View Collection</Button>
+
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-500"></div>
+
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                <Link to="/shop?collection=viella">
+                  <Button variant="luxuryOutline" size="sm">
+                    View Collection
+                  </Button>
                 </Link>
               </div>
             </div>
+
             {/* Quotes */}
-            <div className="relative group overflow-hidden rounded-md h-[220px] md:h-[260px]">
+            <div className="relative group overflow-hidden rounded-md h-[120px] sm:h-[160px] md:h-[200px] lg:h-[220px]cursor-pointer">
               <img
                 src="https://image2url.com/r2/default/images/1773085348259-dafeaff1-769a-48ee-89fb-ff94c24457f4.png"
                 alt="Quotes"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Link
-                  to="/shop?collection=quotes"
-                  className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
-                >
-                  <Button variant="luxuryOutline">View Collection</Button>
+
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-500"></div>
+
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                <Link to="/shop?collection=quotes">
+                  <Button variant="luxuryOutline" size="sm">
+                    View Collection
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -385,7 +397,7 @@ const Index = () => {
             <div className="luxury-divider mt-6" />
           </motion.div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {moods.map((mood, index) => (
               <motion.div
                 key={mood.name}

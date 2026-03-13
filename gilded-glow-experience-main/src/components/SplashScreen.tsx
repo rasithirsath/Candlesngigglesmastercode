@@ -7,7 +7,7 @@ interface Props {
 
 export default function SplashScreen({ setShowSplash }: Props) {
   return (
-    <div className="fixed inset-0 bg-black flex items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 bg-black flex items-center justify-center overflow-hidden px-6">
       {/* Particle Background */}
       <ParticleExplosion />
 

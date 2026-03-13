@@ -17,40 +17,40 @@ const Profile = () => {
       <Navbar />
 
       <main className="pt-32 pb-24 px-6">
-        <div className="container mx-auto max-w-6xl grid grid-cols-4 gap-10">
+        <div className="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-10">
           {/* Sidebar */}
 
-          <div className="luxury-card p-6 flex flex-col gap-4">
+          <div className="luxury-card p-4 md:p-6 flex md:flex-col gap-3 md:gap-4 overflow-x-auto">
             <button
-              className="text-left w-full hover:text-primary"
+              className="whitespace-nowrap text-left md:w-full hover:text-primary px-2 py-1"
               onClick={() => setActiveTab("profile")}
             >
               My Profile
             </button>
 
             <button
-              className="text-left w-full hover:text-primary"
+              className="whitespace-nowrap text-left md:w-full hover:text-primary px-2 py-1"
               onClick={() => setActiveTab("orders")}
             >
               My Orders
             </button>
 
             <button
-              className="text-left w-full hover:text-primary"
+              className="whitespace-nowrap text-left md:w-full hover:text-primary px-2 py-1"
               onClick={() => setActiveTab("rewards")}
             >
               My Rewards
             </button>
 
             <button
-              className="text-left w-full hover:text-primary"
+              className="whitespace-nowrap text-left md:w-full hover:text-primary px-2 py-1"
               onClick={() => setActiveTab("reviews")}
             >
               My Reviews
             </button>
 
             <button
-              className="text-left w-full hover:text-primary"
+              className="whitespace-nowrap text-left md:w-full hover:text-primary px-2 py-1"
               onClick={logout}
             >
               Logout
@@ -59,7 +59,7 @@ const Profile = () => {
 
           {/* Content */}
 
-          <div className="col-span-3 luxury-card p-8">
+          <div className="md:col-span-3 luxury-card p-5 md:p-8">
             {activeTab === "profile" && <ProfileInfo user={user} />}
 
             {activeTab === "orders" && <Orders />}

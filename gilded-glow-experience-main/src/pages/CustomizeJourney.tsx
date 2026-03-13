@@ -37,7 +37,7 @@ const CustomizeJourney = () => {
   const { products, addToCart, wishlist } = useStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [showSplash, setShowSplash] = useState(true);
-  const [selectedCollection, setSelectedCollection] = useState("all");
+  const [selectedCollection, setSelectedCollection] = useState("noor");
   const [spotifyLink, setSpotifyLink] = useState("");
   const [showSpotifyPopup, setShowSpotifyPopup] = useState(false);
 
@@ -332,7 +332,7 @@ const CustomizeJourney = () => {
     <div className="min-h-screen bg-background">
       {/* Progress Header */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-primary/10">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-4 md:px-6 py-3 md:py-4">
           <div className="flex items-center justify-between">
             <button
               onClick={() =>
@@ -346,11 +346,12 @@ const CustomizeJourney = () => {
               <span className="text-sm tracking-wide">Back</span>
             </button>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2 md:gap-3">
               {steps.map((step, index) => (
                 <div key={step} className="flex items-center">
+                  {/* Step Circle */}
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs transition-all duration-300 ${
+                    className={`w-9 h-9 rounded-full flex items-center justify-center text-xs transition-all duration-300 ${
                       index < currentStep
                         ? "bg-primary text-primary-foreground"
                         : index === currentStep
@@ -360,9 +361,13 @@ const CustomizeJourney = () => {
                   >
                     {index < currentStep ? <Check size={14} /> : index + 1}
                   </div>
+
+                  {/* Connector Line */}
                   {index < steps.length - 1 && (
                     <div
-                      className={`w-8 h-[1px] ${index < currentStep ? "bg-primary" : "bg-foreground/20"}`}
+                      className={`w-6 md:w-10 h-[2px] ${
+                        index < currentStep ? "bg-primary" : "bg-foreground/20"
+                      }`}
                     />
                   )}
                 </div>
@@ -382,7 +387,7 @@ const CustomizeJourney = () => {
       </div>
 
       {/* Content Area */}
-      <div className="pt-24 pb-32 px-6">
+      <div className="pt-24 pb-32 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <AnimatePresence mode="wait">
             {/* Step 1: Select Candle */}
@@ -404,7 +409,7 @@ const CustomizeJourney = () => {
                 </div>
 
                 {/* Mood Filter with Wishlist */}
-                <div className="flex justify-center flex-wrap gap-3 mb-8">
+                <div className="flex flex-wrap justify-center gap-3 mb-8 max-w-3xl mx-auto">
                   {[
                     // { name: "All", value: "all" },
                     { name: "Noor", value: "noor" },
@@ -418,7 +423,7 @@ const CustomizeJourney = () => {
                     <button
                       key={collection.value}
                       onClick={() => setSelectedCollection(collection.value)}
-                      className={`px-5 py-2 rounded-full border text-sm tracking-wide transition-all
+                      className={`px-4 py-2 rounded-full border text-sm tracking-wide transition-all
 
       ${
         selectedCollection === collection.value
@@ -461,7 +466,7 @@ const CustomizeJourney = () => {
                         </Button>
                       </div>
                     ) : (
-                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {filteredProducts.map((product) => (
                           <motion.div
                             key={product.id}
@@ -481,7 +486,7 @@ const CustomizeJourney = () => {
                               />
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-                            <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
                               <h3 className="text-lg font-light tracking-wide text-primary">
                                 {product.name}
                               </h3>
@@ -565,7 +570,7 @@ const CustomizeJourney = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto justify-items-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto justify-items-center">
                   {premiumBoxes.map((box) => (
                     <motion.div
                       key={box.id}
@@ -624,7 +629,7 @@ const CustomizeJourney = () => {
                   </p>
                 </div>
 
-                <div className="flex justify-center items-end gap-10 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                   {spotifyCards.map((card, index) => (
                     <motion.div
                       key={card.id}
@@ -635,7 +640,7 @@ const CustomizeJourney = () => {
                           setShowSpotifyPopup(true);
                         }
                       }}
-                      className={`w-[260px] md:w-[300px] cursor-pointer group relative overflow-hidden rounded-sm transition-all duration-500 luxury-card
+                      className={`w-full cursor-pointer group relative overflow-hidden rounded-sm transition-all duration-500 luxury-card
 ${
   selectedSpotify?.id === card.id
     ? "ring-2 ring-primary shadow-[0_0_30px_hsl(43_45%_59%_/_0.3)]"
@@ -776,7 +781,7 @@ ${
                     <p className="text-center text-foreground/50 text-sm uppercase tracking-wider">
                       Need inspiration? Try one of these
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {suggestedQuotes.map((quote, index) => (
                         <motion.button
                           key={index}
@@ -820,7 +825,7 @@ ${
                 </div>
 
                 {/* BLURRED CONTENT */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 blur-sm pointer-events-none">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 blur-sm pointer-events-none">
                   {flowerOptions.map((flower) => (
                     <motion.div
                       key={flower.id}
@@ -886,7 +891,7 @@ ${
                   <div className="luxury-card p-8">
                     {/* Selected Candle */}
                     {selectedCandle && (
-                      <div className="flex items-center gap-6 pb-6 border-b border-primary/10">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-6 border-b border-primary/10">
                         <img
                           src={selectedCandle.image}
                           alt={selectedCandle.name}
@@ -939,10 +944,11 @@ ${
                               {selectedBox.name}
                             </span>
                           </div>
+
                           <span className="text-primary">
-                            {selectedSpotify.price === 0
+                            {selectedBox.price === 0
                               ? "Free"
-                              : `+₹${selectedSpotify.price}`}
+                              : `+₹${selectedBox.price}`}
                           </span>
                         </div>
                       )}
@@ -955,7 +961,7 @@ ${
                             </span>
                           </div>
                           <span className="text-primary">
-                            {selectedSpotify.price === 0
+                            {selectedSpotify?.price === 0
                               ? "Free"
                               : `+₹${selectedSpotify.price}`}
                           </span>
@@ -1021,7 +1027,7 @@ ${
       {/* Fixed Bottom Navigation */}
       {currentStep < 5 && (
         <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-primary/10 py-4 px-6">
-          <div className="container mx-auto max-w-6xl flex items-center justify-between">
+          <div className="container mx-auto max-w-6xl flex flex-col sm:flex-row gap-4 sm:gap-0 items-start sm:items-center justify-between">
             <div>
               <p className="text-xs text-foreground/50 uppercase tracking-wider">
                 Current Total
@@ -1030,7 +1036,7 @@ ${
                 ₹{calculateTotal().toLocaleString()}
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 w-full sm:w-auto">
               <Button
                 variant="outline"
                 onClick={() => setCurrentStep(currentStep + 1)}
@@ -1043,7 +1049,7 @@ ${
                 size="lg"
                 onClick={() => setCurrentStep(currentStep + 1)}
                 disabled={!canProceed()}
-                className="min-w-[160px]"
+                className="min-w-[160px] w-full sm:w-auto"
               >
                 Next Step
                 <ChevronRight size={18} />
