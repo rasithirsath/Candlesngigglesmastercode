@@ -131,7 +131,7 @@ const Rewards = () => {
     // ✅ Increase only birthday count
     setBirthdayCount((prev) => prev + 1);
 
-    toast.success("200 Sparks Added 🎉");
+    toast.success("200 Sparks Added ");
 
     // Reset fields
     setBirthdayName("");
@@ -176,7 +176,7 @@ const Rewards = () => {
 
         setPurchasedExperiences((prev) => [...prev, experience]);
 
-        toast.success("Experience Unlocked 🎉");
+        toast.success("Experience Unlocked ");
       } else {
         toast.error(data.message);
       }
@@ -358,7 +358,7 @@ const Rewards = () => {
               <div className="luxury-card p-8">
                 <div className="flex items-center gap-2 mb-4">
                   <Crown className="text-primary" size={22} />
-                  <h3 className="text-primary text-xl">Tier One</h3>
+                  <h3 className="text-primary text-xl">Ember Society</h3>
                 </div>
 
                 <p className="text-foreground/60 text-sm italic mb-6">
@@ -377,7 +377,7 @@ const Rewards = () => {
                 <div className="flex items-center gap-2 mb-4">
                   <Crown className="text-primary" size={22} />
                   <Crown className="text-primary" size={22} />
-                  <h3 className="text-primary text-xl">Tier Two</h3>
+                  <h3 className="text-primary text-xl">Velvet Circle</h3>
                 </div>
 
                 <p className="text-foreground/60 text-sm italic mb-6">
@@ -397,7 +397,7 @@ const Rewards = () => {
                   <Crown className="text-primary" size={22} />
                   <Crown className="text-primary" size={22} />
                   <Crown className="text-primary" size={22} />
-                  <h3 className="text-primary text-xl">Tier Three</h3>
+                  <h3 className="text-primary text-xl">Obsidian Order</h3>
                 </div>
 
                 <p className="text-foreground/60 text-sm italic mb-6">
@@ -430,16 +430,14 @@ const Rewards = () => {
 
               <div className="luxury-card p-10">
                 <h3 className="text-primary text-xl tracking-widest mb-8">
-                  TIER ONE — UNLOCK EXPERIENCES
+                  EMBER SOCIETY ARCHIVE
                 </h3>
 
                 <div className="grid md:grid-cols-3 gap-8">
                   {/* 🖤 OBSIDIAN */}
 
                   <div>
-                    <h4 className="text-primary mb-3">
-                      🕯 The Obsidian Series
-                    </h4>
+                    <h4 className="text-primary mb-3">The Obsidian Series</h4>
 
                     <p className="text-sm text-foreground/70 mb-3">
                       Black Label Secret Edition
@@ -481,7 +479,7 @@ const Rewards = () => {
                   {/* 🕯 ARCHIVE DROP */}
 
                   <div>
-                    <h4 className="text-primary mb-3">🕯 The Archive Drop</h4>
+                    <h4 className="text-primary mb-3"> The Archive Drop</h4>
 
                     <p className="text-sm text-foreground/70 mb-3">
                       Unreleased or discontinued scent.
@@ -526,7 +524,7 @@ const Rewards = () => {
                   {/* 🕰 TIME CAPSULE */}
 
                   <div>
-                    <h4 className="text-primary mb-3">🕯 The Time Capsule</h4>
+                    <h4 className="text-primary mb-3"> The Time Capsule</h4>
 
                     <p className="text-sm text-foreground/70 mb-3">
                       A Candle and letter to your future self.
@@ -630,7 +628,7 @@ ${isTier2Unlocked ? "" : "blur-sm opacity-60"}
                 {!isTier2Unlocked && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="border border-primary px-6 py-3 text-primary">
-                      Unlock Tier Two
+                      Unlock in Tier Two
                     </div>
                   </div>
                 )}
@@ -677,116 +675,10 @@ ${isTier3Unlocked ? "" : "blur-sm opacity-60"}
                 {!isTier3Unlocked && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="border border-primary px-6 py-3 text-primary">
-                      Unlock Tier Three
+                      Unlock in Tier Three
                     </div>
                   </div>
                 )}
-              </div>
-            </div>
-          </section>
-
-          {/* ================= VAULT EXPERIENCES ================= */}
-
-          <section className="mb-24">
-            <h2 className="text-center text-3xl tracking-[0.2em] text-primary font-light mb-12">
-              THE VAULT EXPERIENCES
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-10">
-              {/* SIGNATURE LABEL */}
-
-              <div className="luxury-card p-8">
-                <h3 className="text-primary text-xl mb-2">
-                  5,500 Sparks — The Signature Label
-                </h3>
-
-                <p className="text-foreground/70 mb-4">
-                  Submit a memory, a name, or even an inside joke. We craft a
-                  completely custom luxury candle label just for you. Minimal
-                  cost to us. Massive emotional value to you. People post this.
-                  That becomes our marketing.
-                </p>
-
-                <ul className="space-y-2 text-sm text-foreground/70">
-                  <li>• Share a personal memory</li>
-
-                  <li>• Add a special name or story</li>
-
-                  <li>• Custom luxury label designed by us</li>
-
-                  <li>• One-of-one collectible candle</li>
-                </ul>
-              </div>
-
-              {/* INNER CIRCLE */}
-
-              <div className="luxury-card p-8">
-                <h3 className="text-primary text-xl mb-2">
-                  6,000 Sparks — Inner Circle Drop
-                </h3>
-
-                <p className="text-foreground/70 mb-4">
-                  Access candles never released publicly. Limited batches.
-                  Members only. Monthly rotating scents. Scarcity creates
-                  desire. Exclusivity creates addiction.
-                </p>
-
-                <ul className="space-y-2 text-sm text-foreground/70">
-                  <li>• Private members-only scent</li>
-
-                  <li>• Limited batch access</li>
-
-                  <li>• Monthly rotation drops</li>
-
-                  <li>• Early insider privilege</li>
-                </ul>
-              </div>
-
-              {/* TIME CAPSULE */}
-
-              <div className="luxury-card p-8">
-                <h3 className="text-primary text-xl mb-2">
-                  7,000 Sparks — The Time Capsule
-                </h3>
-
-                <p className="text-foreground/70 mb-4">
-                  Write a message to your future self. We deliver your candle
-                  months later — a memory waiting to be reopened. Emotional.
-                  Premium. Unforgettable.
-                </p>
-
-                <ul className="space-y-2 text-sm text-foreground/70">
-                  <li>• Write a private future letter & Candle</li>
-
-                  <li>• Delivery after 3, 6 or 12 months </li>
-
-                  <li>• Emotional surprise experience</li>
-
-                  <li>• Perfect gifting moment</li>
-                </ul>
-              </div>
-
-              {/* FLAME CONCIERGE */}
-
-              <div className="luxury-card p-8">
-                <h3 className="text-primary text-xl mb-2">
-                  8,500 Sparks — Flame Concierge
-                </h3>
-
-                <p className="text-foreground/70 mb-4">
-                  The highest tier unlock. Designed for our most devoted
-                  members. Luxury isn't purchased. It's accessed.
-                </p>
-
-                <ul className="space-y-2 text-sm text-foreground/70">
-                  <li>• Early access to every drop</li>
-
-                  <li>• Priority shipping</li>
-
-                  <li>• Private WhatsApp concierge access</li>
-
-                  <li>• 2x Sparks on next purchase</li>
-                </ul>
               </div>
             </div>
           </section>

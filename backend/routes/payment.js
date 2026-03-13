@@ -103,7 +103,7 @@ router.post("/verify-payment", auth, async (req, res) => {
 
     const pointsEarned = Math.floor(amount);
     console.log(
-      `💰 Points calculation: amount=${amount}, pointsEarned=${pointsEarned}`,
+      ` Points calculation: amount=${amount}, pointsEarned=${pointsEarned}`,
     );
     console.log(`👤 Logged-in user ID: ${req.user.id}`);
 
@@ -125,7 +125,7 @@ router.post("/verify-payment", auth, async (req, res) => {
 
       if (result) {
         console.log(
-          `✨ Awarded ${pointsEarned} points to user ${result.email}`,
+          ` Awarded ${pointsEarned} points to user ${result.email}`,
         );
         console.log(`✅ New point total: ${result.rewardPoints}`);
         // Store points data to send in email
@@ -153,14 +153,14 @@ router.post("/verify-payment", auth, async (req, res) => {
     console.log("📧 Sending customer email...");
     await sendMail({
       to: userEmail,
-      subject: "Your Gilded Glow Order is Confirmed ✨",
+      subject: "Your Candle Order is Confirmed ",
       html: customerTemplate(order, pointsData),
     });
 
     console.log("📧 Sending admin email...");
     await sendMail({
       to: process.env.ADMIN_EMAIL,
-      subject: "New Order Received – Gilded Glow",
+      subject: "New Order Received – Candles & Giggles",
       html: adminTemplate(order),
     });
 

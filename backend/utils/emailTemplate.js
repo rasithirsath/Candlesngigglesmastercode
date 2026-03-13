@@ -15,7 +15,7 @@ Gilded Glow Candle Co.
 <tr>
 <td style="padding:40px">
 
-<h2 style="color:#d4af37;margin-bottom:10px">✨ Order Confirmed</h2>
+<h2 style="color:#d4af37;margin-bottom:10px"> Order Confirmed</h2>
 
 <p style="color:#ddd;line-height:1.6">
 Thank you for your order. Your candle experience has officially begun.
@@ -79,7 +79,7 @@ Your total Sparks balance is now
 <hr style="border:none;border-top:1px solid #333;margin:30px 0">
 
 <p style="color:#bbb">
-We'll notify you once your candles are shipped 🕯️
+We'll notify you once your candles are shipped 
 </p>
 
 </td>

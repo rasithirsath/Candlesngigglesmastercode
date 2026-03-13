@@ -204,21 +204,9 @@ export const products: Product[] = [
     fragrance: "Rose & Musk",
     burnTime: "32 hours",
   },
+  // NOOR COLLECTION
   {
     id: "12",
-    name: "Midnight Rose",
-    description: "Luxury rose aroma for romantic evenings",
-    price: 2499,
-    originalPrice: 2999,
-    image:
-      "https://image2url.com/r2/default/images/1773296361288-e931d428-ae82-4759-bf98-6991c836d41d.png",
-    mood: "romantic",
-    collection: "noor",
-    fragrance: "Rose",
-    burnTime: "32 hours",
-  },
-  {
-    id: "13",
     name: "Velvet Romance",
     description: "Soft floral fragrance",
     price: 1099,
@@ -231,7 +219,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "14",
+    id: "13",
     name: "Golden Love",
     description: "Warm romantic candle",
     price: 1099,
@@ -244,7 +232,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "15",
+    id: "14",
     name: "Secret Kiss",
     description: "Luxury scent for couples",
     price: 1499,
@@ -257,20 +245,22 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "16",
-    name: "Morning Coffee",
-    description: "Fresh morning energy",
+    id: "15",
+    name: "Midnight Rose",
+    description: "Luxury rose aroma for romantic evenings",
     price: 2499,
     originalPrice: 2999,
     image:
-      "https://image2url.com/r2/default/images/1773296643961-0585de3a-2ac9-4d44-bef2-513398d6c975.png",
-    mood: "happy",
-    collection: "zara",
-    fragrance: "Coffee",
-    burnTime: "32 hours",
+      "https://image2url.com/r2/default/images/1773296361288-e931d428-ae82-4759-bf98-6991c836d41d.png",
+    mood: "romantic",
+    collection: "noor",
+    fragrance: "Rose",
+    burnTime: "31 hours",
   },
+
+  // ZARA COLLECTION
   {
-    id: "17",
+    id: "16",
     name: "Sunny Citrus",
     description: "Bright citrus aroma",
     price: 1099,
@@ -283,7 +273,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "18",
+    id: "17",
     name: "Golden Sunrise",
     description: "Fresh uplifting scent",
     price: 1099,
@@ -296,7 +286,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "19",
+    id: "18",
     name: "Bright Day",
     description: "Positive energy candle",
     price: 1499,
@@ -309,20 +299,22 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "20",
-    name: "Peaceful Forest",
-    description: "Relaxing woody aroma",
+    id: "19",
+    name: "Morning Coffee",
+    description: "Fresh morning energy",
     price: 2499,
     originalPrice: 2999,
     image:
-      "https://image2url.com/r2/default/images/1773239882263-d5c02b05-57b4-481e-9539-d641ca740bdc.png",
-    mood: "sad",
-    collection: "rune",
-    fragrance: "Cedarwood",
+      "https://image2url.com/r2/default/images/1773296643961-0585de3a-2ac9-4d44-bef2-513398d6c975.png",
+    mood: "happy",
+    collection: "zara",
+    fragrance: "Coffee",
     burnTime: "32 hours",
   },
+
+  // RUNE COLLECTION
   {
-    id: "21",
+    id: "20",
     name: "Zen Garden",
     description: "Meditation fragrance",
     price: 1099,
@@ -335,7 +327,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "22",
+    id: "21",
     name: "Calm Rain",
     description: "Fresh relaxing scent",
     price: 1099,
@@ -348,7 +340,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "23",
+    id: "22",
     name: "Silent Night",
     description: "Deep relaxing aroma",
     price: 1499,
@@ -361,20 +353,22 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "24",
-    name: "Bold Fire",
-    description: "Strong masculine aroma",
+    id: "23",
+    name: "Peaceful Forest",
+    description: "Relaxing woody aroma",
     price: 2499,
     originalPrice: 2999,
     image:
-      "https://image2url.com/r2/default/images/1773297158202-05bb9e18-5fed-45fb-b702-7a22efa566af.png",
-    mood: "angry",
-    collection: "amara",
-    fragrance: "Oud",
+      "https://image2url.com/r2/default/images/1773239882263-d5c02b05-57b4-481e-9539-d641ca740bdc.png",
+    mood: "sad",
+    collection: "rune",
+    fragrance: "Cedarwood",
     burnTime: "32 hours",
   },
+
+  // AMARA COLLECTION
   {
-    id: "25",
+    id: "24",
     name: "Dark Storm",
     description: "Intense fragrance",
     price: 1099,
@@ -387,7 +381,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "26",
+    id: "25",
     name: "Burning Soul",
     description: "Powerful bold scent",
     price: 1099,
@@ -400,7 +394,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "27",
+    id: "26",
     name: "Dark Flame",
     description: "Intense candle aroma",
     price: 1499,
@@ -408,25 +402,28 @@ export const products: Product[] = [
     image:
       "https://image2url.com/r2/default/images/1773297408302-e4a0710d-e6e8-413e-9efb-245f196d7a02.png",
     mood: "angry",
+    isBestSeller: true,
     collection: "amara",
     fragrance: "Clove",
     burnTime: "32 hours",
   },
   {
-    id: "28",
-    name: "Luxury Gift",
-    description: "Perfect gifting candle",
+    id: "27",
+    name: "Bold Fire",
+    description: "Strong masculine aroma",
     price: 2499,
     originalPrice: 2999,
     image:
-      "https://image2url.com/r2/default/images/1773297465975-eebc9daa-59cf-44e2-863b-919347bdd28f.png",
-    mood: "happy",
-    collection: "viella",
-    fragrance: "Vanilla",
+      "https://image2url.com/r2/default/images/1773297158202-05bb9e18-5fed-45fb-b702-7a22efa566af.png",
+    mood: "angry",
+    collection: "amara",
+    fragrance: "Oud",
     burnTime: "32 hours",
   },
+
+  // VIELLA COLLECTION
   {
-    id: "29",
+    id: "28",
     name: "Golden Surprise",
     description: "Elegant gift candle",
     price: 1099,
@@ -439,7 +436,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "30",
+    id: "29",
     name: "Royal Gift",
     description: "Luxury fragrance",
     price: 1099,
@@ -452,7 +449,7 @@ export const products: Product[] = [
     burnTime: "32 hours",
   },
   {
-    id: "31",
+    id: "30",
     name: "Velvet Gift",
     description: "Premium gifting candle",
     price: 1499,
@@ -462,6 +459,19 @@ export const products: Product[] = [
     mood: "happy",
     collection: "viella",
     fragrance: "Vanilla Musk",
+    burnTime: "32 hours",
+  },
+  {
+    id: "31",
+    name: "Luxury Gift",
+    description: "Perfect gifting candle",
+    price: 2499,
+    originalPrice: 2999,
+    image:
+      "https://image2url.com/r2/default/images/1773297465975-eebc9daa-59cf-44e2-863b-919347bdd28f.png",
+    mood: "happy",
+    collection: "viella",
+    fragrance: "Vanilla",
     burnTime: "32 hours",
   },
 ];

@@ -12,7 +12,7 @@ const Shop = () => {
   const { products } = useStore();
 
   // Read collection from URL
-  const collectionFilter = searchParams.get("collection") || "all";
+  const collectionFilter = searchParams.get("collection") || "noor";
 
   // Collection filter buttons
   const collections = [

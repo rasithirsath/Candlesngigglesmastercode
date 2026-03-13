@@ -196,7 +196,7 @@ const Auth = () => {
                 <Star size={40} className="text-primary fill-primary" />
               </div>
               <h2 className="text-2xl md:text-3xl font-light tracking-[0.15em] text-primary mb-4">
-                Welcome! 🎉
+                Welcome!
               </h2>
               <p className="text-foreground/80 text-lg mb-2">
                 You've been rewarded with

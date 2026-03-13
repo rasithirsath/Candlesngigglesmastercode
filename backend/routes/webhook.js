@@ -38,14 +38,14 @@ router.post(
         // ✅ Send customer email
         await sendMail({
           to: order.customer.email,
-          subject: "Your Gilded Glow Order is Confirmed ✨",
+          subject: "Your Candle Order is Confirmed ",
           html: customerTemplate(order),
         });
 
         // ✅ Send admin email
         await sendMail({
           to: process.env.ADMIN_EMAIL,
-          subject: "New Order Received – Gilded Glow",
+          subject: "New Order Received – Candles & Giggles",
           html: adminTemplate(order),
         });
       }
