@@ -7,15 +7,19 @@ const sendMail = async ({ to, subject, html }) => {
     console.log("📧 Sending email to:", to);
 
     const msg = {
-      to,
-      from: "rasithworkspace@gmail.com",
-      subject,
-      html,
+      to: to,
+      from: {
+        email: "rasithworkspace@gmail.com",
+        name: "Candles & Giggles",
+      },
+      replyTo: "rasithshahul814@gmail.com",
+      subject: subject,
+      html: html,
     };
 
     const response = await sgMail.send(msg);
 
-    console.log("✅ Email sent");
+    console.log("✅ Email sent successfully");
   } catch (error) {
     console.error("❌ Email failed:", error.response?.body || error);
   }
