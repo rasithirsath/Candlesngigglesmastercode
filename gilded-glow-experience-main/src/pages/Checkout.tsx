@@ -137,7 +137,7 @@ const Checkout = () => {
       key: import.meta.env.VITE_RAZORPAY_KEY_ID, // test key
       amount: order.amount,
       currency: "INR",
-      name: "Gilded Glow Candles",
+      name: "Candles & Giggles",
       description: "Luxury Candle Purchase",
       order_id: order.id,
 

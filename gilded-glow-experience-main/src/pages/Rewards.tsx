@@ -44,7 +44,11 @@ const Rewards = () => {
   const maxPoints = tierThreeThreshold;
 
   // Calculate progress %
-  const progressPercentage = userTier === 1 ? 10 : userTier === 2 ? 50 : 100;
+  let progressPercentage = 0;
+
+  if (userTier === 1) progressPercentage = 5;
+  if (userTier === 2) progressPercentage = 50;
+  if (userTier === 3) progressPercentage = 100;
 
   const [showBirthdayModal, setShowBirthdayModal] = useState(false);
   const [showEventModal, setShowEventModal] = useState(false);
@@ -438,7 +442,7 @@ const Rewards = () => {
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                  {/* 🖤 OBSIDIAN */}
+                  {/* OBSIDIAN SERIES */}
 
                   <div>
                     <h4 className="text-primary mb-3">The Obsidian Series</h4>
@@ -449,11 +453,8 @@ const Rewards = () => {
 
                     <ul className="text-sm text-foreground/60 space-y-1 mb-4">
                       <li>• Limited to 150 Members</li>
-
                       <li>• Not sold.</li>
-
                       <li>• Not advertised.</li>
-
                       <li>• Only unlocked.</li>
                     </ul>
 
@@ -471,30 +472,37 @@ const Rewards = () => {
                           : "heroFilled"
                       }
                       onClick={() =>
-                        handleUnlockExperience("The Obsidian Series", 4500)
+                        setConfirmExperience({
+                          name: "The Obsidian Series",
+                          sparks: 4500,
+                        })
                       }
                     >
                       {purchasedExperiences.includes("The Obsidian Series")
                         ? "Purchased"
-                        : "Unlock Experience"}
+                        : rewardPoints >= 4500
+                          ? "Unlock Experience"
+                          : "Insufficient Sparks"}
                     </Button>
                   </div>
 
-                  {/* 🕯 ARCHIVE DROP */}
+                  {/* ARCHIVE DROP */}
 
                   <div>
-                    <h4 className="text-primary mb-3"> The Archive Drop</h4>
+                    <h4 className="text-primary mb-3">
+                      The Secret Quote Candle
+                    </h4>
 
                     <p className="text-sm text-foreground/70 mb-3">
-                      Unreleased or discontinued scent.
+                      A quiet message hidden within the flame.
                     </p>
 
                     <ul className="text-sm text-foreground/60 space-y-1 mb-4">
-                      <li>• Too bold for retail</li>
-
-                      <li>• Limited Batch</li>
-
-                      <li>• Members only</li>
+                      <li>
+                        • A special candle created exclusively for Ember members
+                      </li>
+                      <li>• A hidden quote set inside the jar</li>
+                      <li>• Revealed only after the candle has fully burned</li>
                     </ul>
 
                     <p className="text-primary mb-4">Redeem 6,000 Sparks</p>
@@ -525,10 +533,10 @@ const Rewards = () => {
                     </Button>
                   </div>
 
-                  {/* 🕰 TIME CAPSULE */}
+                  {/* TIME CAPSULE */}
 
                   <div>
-                    <h4 className="text-primary mb-3"> The Time Capsule</h4>
+                    <h4 className="text-primary mb-3">The Time Capsule</h4>
 
                     <p className="text-sm text-foreground/70 mb-3">
                       A Candle and letter to your future self.
@@ -536,9 +544,7 @@ const Rewards = () => {
 
                     <ul className="text-sm text-foreground/60 space-y-1 mb-4">
                       <li>• Wax sealed envelope</li>
-
                       <li>• Hand written</li>
-
                       <li>• Delivered after 3 / 6 / 12 months</li>
                     </ul>
 
@@ -572,257 +578,297 @@ const Rewards = () => {
                 </div>
               </div>
 
-              {/* ======================= TIER 2 LOCKED ======================= */}
-              <div className="relative">
-                <div
-                  className={`luxury-card p-14 
-${isTier2Unlocked ? "" : "blur-sm opacity-60"}
-`}
-                >
-                  <h3 className="text-primary text-xl mb-4">
-                    VELVET TIER ARCHIVE
-                  </h3>
+              {/* ======================= TIER 2 ======================= */}
 
-                  {isTier2Unlocked ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                      {/* MIDNIGHT DISPATCH */}
+              <div className="luxury-card p-14">
+                <h3 className="text-primary text-xl mb-8">
+                  VELVET TIER ARCHIVE
+                </h3>
 
-                      <div>
-                        <h4 className="text-primary mb-3">
-                          The Midnight Dispatch
-                        </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                  {/* MIDNIGHT DISPATCH */}
 
-                        <p className="text-sm text-foreground/70 mb-3">
-                          A secret candle released on random nights.
-                        </p>
+                  <div>
+                    <h4 className="text-primary mb-3">The Midnight Dispatch</h4>
 
-                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
-                          <li>• Velvet members only</li>
-                          <li>• Available for 3 hours</li>
-                          <li>• Never released again</li>
-                        </ul>
-
-                        <p className="text-primary mb-4">Redeem 9,000 Sparks</p>
-
-                        <Button
-                          variant="heroFilled"
-                          onClick={() =>
-                            setConfirmExperience({
-                              name: "Midnight Dispatch",
-                              sparks: 9000,
-                            })
-                          }
-                        >
-                          Unlock Experience
-                        </Button>
-                      </div>
-
-                      {/* COLLECTOR CARD */}
-
-                      <div>
-                        <h4 className="text-primary mb-3">
-                          The Collector Card
-                        </h4>
-
-                        <p className="text-sm text-foreground/70 mb-3">
-                          A collectible philosophy card sent with each order.
-                        </p>
-
-                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
-                          <li>• Limited art cards</li>
-                          <li>• 10 cards unlock a reward candle</li>
-                          <li>• Gamified collecting</li>
-                        </ul>
-
-                        <p className="text-primary mb-4">Redeem 9,500 Sparks</p>
-
-                        <Button
-                          variant="heroFilled"
-                          onClick={() =>
-                            setConfirmExperience({
-                              name: "Collector Card",
-                              sparks: 9500,
-                            })
-                          }
-                        >
-                          Unlock Experience
-                        </Button>
-                      </div>
-
-                      {/* MATCHBOX EDITIONS */}
-
-                      <div>
-                        <h4 className="text-primary mb-3">
-                          The Matchbox Editions
-                        </h4>
-
-                        <p className="text-sm text-foreground/70 mb-3">
-                          Artistic matchboxes released in collectible designs.
-                        </p>
-
-                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
-                          <li>• Seasonal designs</li>
-                          <li>• Members only</li>
-                          <li>• Collect the full series</li>
-                        </ul>
-
-                        <p className="text-primary mb-4">
-                          Redeem 10,000 Sparks
-                        </p>
-
-                        <Button
-                          variant="heroFilled"
-                          onClick={() =>
-                            setConfirmExperience({
-                              name: "Matchbox Editions",
-                              sparks: 10000,
-                            })
-                          }
-                        >
-                          Unlock Experience
-                        </Button>
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-foreground/60">
-                      Unlocks at 5,000 Sparks
+                    <p className="text-sm text-foreground/70 mb-3">
+                      On select nights, members receive a private message
+                      revealing a candle available for one night only.
                     </p>
-                  )}
-                </div>
 
-                {!isTier2Unlocked && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="border border-primary px-6 py-3 text-primary">
-                      Unlock in Tier Two
-                    </div>
+                    <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                      <li>• Limited edition candle release</li>
+                      <li>• Available for just 3 hours</li>
+                      <li>• Never restocked once sold out</li>
+                    </ul>
+
+                    <p className="text-primary mb-4">Redeem 4,000 Sparks</p>
+
+                    <Button
+                      className="px-8 py-4 whitespace-nowrap"
+                      disabled={
+                        rewardPoints < 4000 ||
+                        purchasedExperiences.includes("Midnight Dispatch")
+                      }
+                      variant={
+                        purchasedExperiences.includes("Midnight Dispatch")
+                          ? "luxuryOutline"
+                          : "heroFilled"
+                      }
+                      onClick={() =>
+                        setConfirmExperience({
+                          name: "Midnight Dispatch",
+                          sparks: 4000,
+                        })
+                      }
+                    >
+                      {purchasedExperiences.includes("Midnight Dispatch")
+                        ? "Purchased"
+                        : rewardPoints >= 4000
+                          ? "Unlock Experience"
+                          : "Insufficient Sparks"}
+                    </Button>
                   </div>
-                )}
+
+                  {/* COLLECTOR CARD */}
+
+                  <div>
+                    <h4 className="text-primary mb-3">The Collector Card</h4>
+
+                    <p className="text-sm text-foreground/70 mb-3">
+                      Begin building your own Velvet archive.
+                    </p>
+
+                    <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                      <li>• Build your personal collection</li>
+                      <li>
+                        • Collect all 20 cards to unlock a special reward candle
+                      </li>
+                    </ul>
+
+                    <p className="text-primary mb-4">Redeem 4,500 Sparks</p>
+
+                    <Button
+                      className="px-8 py-4 whitespace-nowrap"
+                      disabled={
+                        rewardPoints < 4500 ||
+                        purchasedExperiences.includes("Collector Card")
+                      }
+                      variant={
+                        purchasedExperiences.includes("Collector Card")
+                          ? "luxuryOutline"
+                          : "heroFilled"
+                      }
+                      onClick={() =>
+                        setConfirmExperience({
+                          name: "Collector Card",
+                          sparks: 4500,
+                        })
+                      }
+                    >
+                      {purchasedExperiences.includes("Collector Card")
+                        ? "Purchased"
+                        : rewardPoints >= 4500
+                          ? "Unlock Experience"
+                          : "Insufficient Sparks"}
+                    </Button>
+                  </div>
+
+                  {/* MATCHBOX EDITIONS */}
+
+                  <div>
+                    <h4 className="text-primary mb-3">The Matchbox Editions</h4>
+
+                    <p className="text-sm text-foreground/70 mb-3">
+                      Receive limited edition matchboxes designed exclusively
+                      for Velvet members.
+                    </p>
+
+                    <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                      <li>• Exclusive artistic matchbox designs</li>
+                      <li>• New editions released throughout the year</li>
+                      <li>• Build a collectible series.</li>
+                    </ul>
+
+                    <p className="text-primary mb-4">Redeem 5,000 Sparks</p>
+
+                    <Button
+                      className="px-8 py-4 whitespace-nowrap"
+                      disabled={
+                        rewardPoints < 5000 ||
+                        purchasedExperiences.includes("Matchbox Editions")
+                      }
+                      variant={
+                        purchasedExperiences.includes("Matchbox Editions")
+                          ? "luxuryOutline"
+                          : "heroFilled"
+                      }
+                      onClick={() =>
+                        setConfirmExperience({
+                          name: "Matchbox Editions",
+                          sparks: 5000,
+                        })
+                      }
+                    >
+                      {purchasedExperiences.includes("Matchbox Editions")
+                        ? "Purchased"
+                        : rewardPoints >= 5000
+                          ? "Unlock Experience"
+                          : "Insufficient Sparks"}
+                    </Button>
+                  </div>
+                </div>
               </div>
 
-              {/* ======================= TIER 3 LOCKED ======================= */}
+              {/* ======================= TIER 3 ======================= */}
 
-              <div className="relative">
-                <div
-                  className={`luxury-card p-14 
-${isTier3Unlocked ? "" : "blur-sm opacity-60"}
-`}
-                >
-                  <h3 className="text-primary text-xl mb-8">
-                    OBSIDIAN TIER ARCHIVE
-                  </h3>
+              <div className="luxury-card p-14">
+                <h3 className="text-primary text-xl mb-8">
+                  OBSIDIAN TIER ARCHIVE
+                </h3>
 
-                  {isTier3Unlocked ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                      {/* OBSIDIAN ATELIER */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                  {/* SCENT JURY */}
 
-                      <div>
-                        <h4 className="text-primary mb-3">The Scent Jury</h4>
+                  <div>
+                    <h4 className="text-primary mb-3">The Scent Jury</h4>
 
-                        <p className="text-sm text-foreground/70 mb-3">
-                          Members vote on the next fragrance release.
-                        </p>
-
-                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
-                          <li>• Influence future collections</li>
-                          <li>• Vote on scent direction</li>
-                          <li>• Receive the first batch</li>
-                        </ul>
-
-                        <p className="text-primary mb-4">
-                          Redeem 12,000 Sparks
-                        </p>
-
-                        <Button
-                          variant="heroFilled"
-                          onClick={() =>
-                            handleUnlockExperience(
-                              "The Obsidian Atelier",
-                              12000,
-                            )
-                          }
-                        >
-                          Unlock Experience
-                        </Button>
-                      </div>
-
-                      {/* SECRET MENU */}
-
-                      <div>
-                        <h4 className="text-primary mb-3">The Secret Menu</h4>
-
-                        <p className="text-sm text-foreground/70 mb-3">
-                          Hidden experimental products.
-                        </p>
-
-                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
-                          <li>• Prototype scents</li>
-                          <li>• Archive labels</li>
-                          <li>• Studio experiments</li>
-                        </ul>
-
-                        <p className="text-primary mb-4">
-                          Redeem 13,000 Sparks
-                        </p>
-
-                        <Button
-                          variant="heroFilled"
-                          onClick={() =>
-                            handleUnlockExperience("Secret Menu", 13000)
-                          }
-                        >
-                          Unlock Experience
-                        </Button>
-                      </div>
-
-                      {/* SCENT JURY */}
-
-                      <div>
-                        <h4 className="text-primary mb-3">
-                          The Obsidian Atelier
-                        </h4>
-
-                        <p className="text-sm text-foreground/70 mb-3">
-                          Design a candle with the studio.
-                        </p>
-
-                        <ul className="text-sm text-foreground/60 space-y-1 mb-4">
-                          <li>• Choose scent direction</li>
-                          <li>• Choose wax color</li>
-                          <li>• Choose label quote</li>
-                        </ul>
-
-                        <p className="text-sm text-foreground/60 mb-3">
-                          A small batch will be produced named after you.
-                        </p>
-
-                        <p className="text-primary mb-4">
-                          Redeem 14,000 Sparks
-                        </p>
-
-                        <Button
-                          variant="heroFilled"
-                          onClick={() =>
-                            handleUnlockExperience("Scent Jury", 14000)
-                          }
-                        >
-                          Unlock Experience
-                        </Button>
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-foreground/60">
-                      Unlocks at 10,000 Sparks
+                    <p className="text-sm text-foreground/70 mb-3">
+                      Vote on future fragrance releases and help shape the next
+                      CandlesNGiggles collection.
                     </p>
-                  )}
-                </div>
 
-                {!isTier3Unlocked && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="border border-primary px-6 py-3 text-primary">
-                      Unlock in Tier Three
-                    </div>
+                    <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                      <li>• Influence upcoming scent launches</li>
+                      <li>• Vote on fragrance directions</li>
+                      <li>• Receive priority access to the first batch</li>
+                    </ul>
+
+                    <p className="text-primary mb-4">Redeem 4,500 Sparks</p>
+
+                    <Button
+                      className="px-8 py-4 whitespace-nowrap"
+                      disabled={
+                        rewardPoints < 4500 ||
+                        purchasedExperiences.includes("Scent Jury")
+                      }
+                      variant={
+                        purchasedExperiences.includes("Scent Jury")
+                          ? "luxuryOutline"
+                          : "heroFilled"
+                      }
+                      onClick={() =>
+                        setConfirmExperience({
+                          name: "Scent Jury",
+                          sparks: 4500,
+                        })
+                      }
+                    >
+                      {purchasedExperiences.includes("Scent Jury")
+                        ? "Purchased"
+                        : rewardPoints >= 4500
+                          ? "Unlock Experience"
+                          : "Insufficient Sparks"}
+                    </Button>
                   </div>
-                )}
+
+                  {/* SECRET MENU */}
+
+                  <div>
+                    <h4 className="text-primary mb-3">The Secret Menu</h4>
+
+                    <p className="text-sm text-foreground/70 mb-3">
+                      Access a hidden collection reserved exclusively for
+                      Obsidian members.
+                    </p>
+
+                    <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                      <li>• Experimental scent blends</li>
+                      <li>• Prototype jars and designs</li>
+                      <li>• Rare archive creations</li>
+                    </ul>
+
+                    <p className="text-primary mb-4">Redeem 5,000 Sparks</p>
+
+                    <Button
+                      className="px-8 py-4 whitespace-nowrap"
+                      disabled={
+                        rewardPoints < 5000 ||
+                        purchasedExperiences.includes("Secret Menu")
+                      }
+                      variant={
+                        purchasedExperiences.includes("Secret Menu")
+                          ? "luxuryOutline"
+                          : "heroFilled"
+                      }
+                      onClick={() =>
+                        setConfirmExperience({
+                          name: "Secret Menu",
+                          sparks: 5000,
+                        })
+                      }
+                    >
+                      {purchasedExperiences.includes("Secret Menu")
+                        ? "Purchased"
+                        : rewardPoints >= 5000
+                          ? "Unlock Experience"
+                          : "Insufficient Sparks"}
+                    </Button>
+                  </div>
+
+                  {/* OBSIDIAN ATELIER */}
+
+                  <div>
+                    <h4 className="text-primary mb-3">The Obsidian Atelier</h4>
+
+                    <p className="text-sm text-foreground/70 mb-3">
+                      Collaborate with the studio to create your own signature
+                      candle.
+                    </p>
+
+                    <ul className="text-sm text-foreground/60 space-y-1 mb-4">
+                      <li>• Choose the scent direction</li>
+                      <li>• Select wax color and label quote</li>
+                      <li>
+                        • The candle is produced and shipped to you. If its too
+                        good we will send it through mass production and let you
+                        name it!
+                      </li>
+                    </ul>
+
+                    <p className="text-sm text-foreground/60 mb-3">
+                      On select nights, members receive a private message
+                      revealing a candle available for one night only.
+                    </p>
+
+                    <p className="text-primary mb-4">Redeem 12,000 Sparks</p>
+
+                    <Button
+                      className="px-8 py-4 whitespace-nowrap"
+                      disabled={
+                        rewardPoints < 12000 ||
+                        purchasedExperiences.includes("Obsidian Atelier")
+                      }
+                      variant={
+                        purchasedExperiences.includes("Obsidian Atelier")
+                          ? "luxuryOutline"
+                          : "heroFilled"
+                      }
+                      onClick={() =>
+                        setConfirmExperience({
+                          name: "Obsidian Atelier",
+                          sparks: 12000,
+                        })
+                      }
+                    >
+                      {purchasedExperiences.includes("Obsidian Atelier")
+                        ? "Purchased"
+                        : rewardPoints >= 12000
+                          ? "Unlock Experience"
+                          : "Insufficient Sparks"}
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -864,7 +910,7 @@ transition-all duration-300 overflow-hidden"
                     </p>
 
                     <p className="text-sm text-foreground/60">
-                      Earn 500 Sparks
+                      Earn 100 Sparks
                     </p>
                   </div>
                 </Link>

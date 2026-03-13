@@ -167,6 +167,14 @@ router.post("/redeem", auth, async (req, res) => {
 
     // ⭐ Deduct sparks
     user.rewardPoints -= sparksRequired;
+
+    // ⭐ Update Tier Logic
+    if (user.rewardPoints >= 10000 && user.tier < 3) {
+      user.tier = 3;
+    } else if (user.rewardPoints >= 4000 && user.tier < 2) {
+      user.tier = 2;
+    }
+
     await user.save();
 
     // 🗂 Save redemption

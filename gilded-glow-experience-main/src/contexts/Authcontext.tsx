@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 export interface User {
+  tier: number;
   id: string;
   name: string;
   email: string;

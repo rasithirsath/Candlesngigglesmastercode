@@ -62,7 +62,7 @@ export default function SplashScreen({ setShowSplash }: Props) {
         {/* Logo */}
         <motion.img
           src="/logo/candlesngiggles-logo.png"
-          className="h-32 mx-auto mb-10"
+          className="h-20 sm:h-24 md:h-32 mx-auto mb-8"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2 }}
@@ -72,8 +72,8 @@ export default function SplashScreen({ setShowSplash }: Props) {
         <motion.h1
           initial={{ opacity: 0, letterSpacing: "0.7em" }}
           animate={{ opacity: 1, letterSpacing: "0.35em" }}
-          transition={{ duration: 2.5, delay: 0.5 }}
-          className="text-6xl font-light tracking-[0.35em]"
+          transition={{ duration: 2.5, delay: 0.1 }}
+          className="text-3xl sm:text-4xl md:text-6xl font-light tracking-[0.25em] sm:tracking-[0.3em]"
           style={{ color: "#E8D7A5" }}
         >
           CANDLES & GIGGLES
@@ -84,7 +84,7 @@ export default function SplashScreen({ setShowSplash }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
-          className="mt-6 tracking-[0.4em] text-sm"
+          className="mt-10 sm:mt-14 px-6 sm:px-12 py-2 sm:py-3 tracking-[0.25em] sm:tracking-[0.35em] text-xs sm:text-sm"
           style={{ color: "#D4C494" }}
         >
           LUXURY CANDLE EXPERIENCE
@@ -94,7 +94,7 @@ export default function SplashScreen({ setShowSplash }: Props) {
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3 }}
+          transition={{ delay: 2 }}
           onClick={() => setShowSplash(false)}
           className="mt-14 px-12 py-3 border tracking-[0.35em] text-sm hover:bg-[#E8D7A5]/10 transition-all duration-500"
           style={{ borderColor: "#E8D7A5", color: "#E8D7A5" }}

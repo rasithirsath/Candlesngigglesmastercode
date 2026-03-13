@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "@/contexts/Authcontext";
+import { Crown } from "lucide-react";
 
 const ProfileInfo = () => {
+  const { user } = useAuth();
+
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  // Tier system
+  const tierInfo = {
+    1: { name: "Ember Tier", icon: "" },
+    2: { name: "Velvet Tier", icon: "" },
+    3: { name: "Obsidian Tier", icon: "" },
+  };
 
+  const currentTier = tierInfo[user?.tier || 1];
+
+  useEffect(() => {
     fetch("https://backend-wghd.onrender.com/api/user/profile", {
       method: "GET",
       headers: {
@@ -52,6 +63,12 @@ const ProfileInfo = () => {
           <span className="text-primary">Sparks:</span>{" "}
           {profile?.rewardPoints || 0}
         </p>
+
+        {/* Tier Badge */}
+        <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 border border-primary/40 text-primary text-sm tracking-wide">
+          <span className="text-lg">{currentTier.icon}</span>
+          <span>{currentTier.name}</span>
+        </div>
       </div>
     </div>
   );

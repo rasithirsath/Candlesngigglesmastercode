@@ -819,9 +819,7 @@ ${
                     Select Flower Bouquet
                   </h2>
 
-                  <p className="text-foreground/60">
-                    Add Luxury Flowers (+₹300)
-                  </p>
+                  <p className="text-foreground/60">Add Luxury Flowers</p>
                 </div>
 
                 {/* BLURRED CONTENT */}

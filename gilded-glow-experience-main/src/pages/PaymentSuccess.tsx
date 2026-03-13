@@ -27,59 +27,39 @@ const PaymentSuccess = () => {
       {/* CENTER CONTENT */}
       <div className="text-center relative z-10">
         {/* CANDLE */}
+        {/* LUXURY SUCCESS ICON */}
         <motion.div
-          initial={{ scale: 0.7, opacity: 0 }}
+          initial={{ scale: 0.6, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
-          className="relative mx-auto mb-20 w-[140px] h-[240px]"
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="relative mx-auto mb-16 w-[140px] h-[140px] flex items-center justify-center"
         >
-          {/* candle glow */}
-          <div className="absolute -inset-20 bg-primary/10 blur-[120px] rounded-full" />
+          {/* glow */}
+          <div className="absolute -inset-16 bg-primary/20 blur-[100px] rounded-full" />
 
-          {/* candle body */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90px] h-[170px] bg-gradient-to-b from-[#f7f2e9] to-[#e4dccb] rounded-t-md shadow-[0_20px_60px_rgba(0,0,0,0.6)]" />
-
-          {/* wick */}
-          <div className="absolute bottom-[170px] left-1/2 -translate-x-1/2 w-[4px] h-[14px] bg-black rounded" />
-
-          {/* flame */}
+          {/* circle */}
           <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.2, duration: 0.7 }}
-            className="absolute bottom-[180px] left-1/2 -translate-x-1/2"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="w-[110px] h-[110px] border border-primary rounded-full flex items-center justify-center"
           >
-            <motion.div
-              animate={{
-                scale: [1, 1.15, 1],
-                rotate: [0, 2, -2, 0],
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="relative"
+            {/* checkmark */}
+            <motion.svg
+              width="50"
+              height="50"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#b49b4a"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
             >
-              {/* flame glow */}
-              <div className="absolute -inset-14 bg-[#d4af37]/30 blur-[80px] rounded-full" />
-
-              {/* flame */}
-              <div
-                className="w-[18px] h-[34px] bg-gradient-to-t from-[#d4af37] via-[#f3d88b] to-[#fff6cc] rounded-full"
-                style={{
-                  clipPath: "ellipse(50% 70% at 50% 100%)",
-                }}
-              />
-
-              {/* inner flame */}
-              <div
-                className="absolute top-[8px] left-1/2 -translate-x-1/2 w-[10px] h-[18px] bg-white/80 rounded-full"
-                style={{
-                  clipPath: "ellipse(50% 70% at 50% 100%)",
-                }}
-              />
-            </motion.div>
+              <motion.path d="M5 13l4 4L19 7" />
+            </motion.svg>
           </motion.div>
         </motion.div>
 
