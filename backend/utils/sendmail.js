@@ -7,14 +7,18 @@ const sendMail = async ({ to, subject, html }) => {
     console.log("📧 Sending email to:", to);
 
     const msg = {
-      to: to,
+      to,
       from: {
         email: "rasithworkspace@gmail.com",
         name: "Candles & Giggles",
       },
-      replyTo: "rasithshahul814@gmail.com",
-      subject: subject,
-      html: html,
+      replyTo: "rasithworkspace@gmail.com",
+      subject,
+      html,
+      headers: {
+        "X-Priority": "1",
+        "X-MSMail-Priority": "High",
+      },
     };
 
     const response = await sgMail.send(msg);
