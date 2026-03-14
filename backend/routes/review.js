@@ -41,7 +41,7 @@ router.post("/add", auth, async (req, res) => {
   });
 
   // reward sparks
-  const sparksReward = 500;
+  const sparksReward = 100;
 
   const user = await User.findByIdAndUpdate(
     userId,

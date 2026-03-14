@@ -311,7 +311,7 @@ const Cart = () => {
                   </div>
 
                   {/* Points Redemption Checkbox */}
-                  {user && user.rewardPoints >= 1000 && cartTotal > 1000 && (
+                  {/* {user && user.rewardPoints >= 1000 && cartTotal > 1000 && (
                     <div className="mb-6 p-4 rounded-lg border border-primary/20 bg-primary/5">
                       <div className="flex items-start gap-3">
                         <Checkbox
@@ -336,7 +336,7 @@ const Cart = () => {
                         </div>
                       </div>
                     </div>
-                  )}
+                  )} */}
 
                   <div className="luxury-divider mb-6" />
                   <div className="space-y-3 mb-6">

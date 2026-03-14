@@ -9,10 +9,10 @@ const sendMail = async ({ to, subject, html }) => {
     const msg = {
       to,
       from: {
-        email: "rasithworkspace@gmail.com",
+        email: process.env.MAIL_FROM,
         name: "Candles & Giggles",
       },
-      replyTo: "rasithworkspace@gmail.com",
+      replyTo: process.env.MAIL_FROM,
       subject,
       html,
       headers: {
@@ -21,7 +21,7 @@ const sendMail = async ({ to, subject, html }) => {
       },
     };
 
-    const response = await sgMail.send(msg);
+    await sgMail.send(msg);
 
     console.log("✅ Email sent successfully");
   } catch (error) {
