@@ -477,6 +477,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
       return [];
     }
   });
+  // Testing Comments
   useEffect(() => {
     try {
       const key = getCartKey(user?.id ?? null);
