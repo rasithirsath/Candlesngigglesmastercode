@@ -131,11 +131,19 @@ const Checkout = () => {
     );
 
     const order = await orderRes.json();
+    console.log("ORDER RESPONSE FROM BACKEND:", order);
+    console.log("ORDER ID:", order.id);
+    console.log("ORDER AMOUNT:", order.amount);
+
+    if (!order || !order.id) {
+      console.error("Order creation failed:", order);
+      toast.error("Order creation failed");
+      return;
+    }
 
     // 2️⃣ Open Razorpay checkout
     const options = {
-      key: "rzp_live_SFJSDKFNsb4CKO",
-      amount: order.amount,
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
       currency: "INR",
       name: "Candles & Giggles",
       description: "Luxury Candle Purchase",

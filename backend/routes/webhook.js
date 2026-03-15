@@ -44,7 +44,7 @@ router.post(
 
         // ✅ Send admin email
         await sendMail({
-          to: process.env.ADMIN_EMAIL,
+          to: process.env.MAIL_FROM,
           subject: "New Order Received – Candles & Giggles",
           html: adminTemplate(order),
         });
