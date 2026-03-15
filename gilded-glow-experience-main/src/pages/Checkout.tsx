@@ -151,6 +151,49 @@ const Checkout = () => {
 
       handler: async function (response) {
         console.log("PAYMENT SUCCESS:", response);
+
+        const token = localStorage.getItem("token");
+
+        try {
+          const verifyRes = await fetch(
+            "https://backend-wghd.onrender.com/api/payment/verify-payment",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                ...response,
+                amount: grandTotal,
+                customer: formData,
+                items: cart,
+                redeemPoints,
+              }),
+            },
+          );
+
+          const data = await verifyRes.json();
+
+          if (data.success) {
+            toast.success("Payment successful!");
+
+            // update user points in frontend
+            if (data.user) {
+              localStorage.setItem("user", JSON.stringify(data.user));
+              loginUser(data.user); // update auth context
+            }
+
+            clearCart();
+
+            navigate("/payment-success");
+          } else {
+            toast.error("Payment verification failed");
+          }
+        } catch (err) {
+          console.error("Verification error:", err);
+          toast.error("Payment verification error");
+        }
       },
 
       prefill: {
