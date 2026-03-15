@@ -1,22 +1,29 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { useStore } from "@/contexts/StoreContext";
 
 const Shop = () => {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const { products } = useStore();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  // Read collection from URL
-  const collectionFilter = searchParams.get("collection") || "noor";
+  const collectionFilter = searchParams.get("collection");
+  const moodFilter = searchParams.get("mood");
 
-  // Collection filter buttons
+  // Redirect /shop → /shop?collection=noor
+  useEffect(() => {
+    if (!collectionFilter && !moodFilter) {
+      navigate("/shop?collection=noor", { replace: true });
+    }
+  }, [collectionFilter, moodFilter, navigate]);
+
+  // Collection buttons
   const collections = [
-    // { key: "all", name: "All" },
     { key: "noor", name: "Noor" },
     { key: "zara", name: "Zara" },
     { key: "rune", name: "Rune" },
@@ -27,12 +34,16 @@ const Shop = () => {
 
   // Filter products
   const filteredProducts = useMemo(() => {
-    if (collectionFilter === "all") return products;
+    return products.filter((product) => {
+      const collectionMatch = collectionFilter
+        ? product.collection === collectionFilter
+        : true;
 
-    return products.filter(
-      (product) => product.collection === collectionFilter,
-    );
-  }, [products, collectionFilter]);
+      const moodMatch = moodFilter ? product.mood === moodFilter : true;
+
+      return collectionMatch && moodMatch;
+    });
+  }, [products, collectionFilter, moodFilter]);
 
   // Collection titles
   const collectionNames: Record<string, string> = {
@@ -44,20 +55,23 @@ const Shop = () => {
     quotes: "Shop By Quotes",
   };
 
-  const pageTitle =
-    collectionFilter === "all"
-      ? "All Candles"
-      : collectionNames[collectionFilter] || "Collection";
+  // Page title
+  const pageTitle = useMemo(() => {
+    if (moodFilter) {
+      return `${moodFilter.charAt(0).toUpperCase() + moodFilter.slice(1)} Mood Candles`;
+    }
 
-  const pageDescription =
-    collectionFilter === "all"
-      ? "Explore our luxury candle collection"
-      : "Explore this exclusive candle collection";
+    if (collectionFilter) {
+      return collectionNames[collectionFilter] || "Collection";
+    }
+
+    return "All Candles";
+  }, [collectionFilter, moodFilter]);
 
   return (
     <div className="min-h-screen bg-background">
-      {" "}
       <Navbar />
+
       <main className="pt-32 pb-24 px-6">
         <div className="container mx-auto max-w-6xl">
           {/* Header */}
@@ -72,13 +86,13 @@ const Shop = () => {
             </h1>
 
             <p className="text-foreground/60 font-light tracking-wide">
-              {pageDescription}
+              Explore this exclusive candle collection
             </p>
 
             <div className="luxury-divider mt-6" />
           </motion.div>
 
-          {/* Collection Filter Bar */}
+          {/* Collection Filter */}
           <div className="flex justify-center gap-6 mb-12 flex-wrap">
             {collections.map((collection) => {
               const active = collectionFilter === collection.key;
@@ -87,18 +101,18 @@ const Shop = () => {
                 <button
                   key={collection.key}
                   onClick={() => {
-                    if (collection.key === "all") {
-                      navigate("/shop");
-                    } else {
-                      navigate(`/shop?collection=${collection.key}`);
-                    }
+                    navigate(
+                      `/shop?collection=${collection.key}${
+                        moodFilter ? `&mood=${moodFilter}` : ""
+                      }`,
+                    );
                   }}
                   className={`px-6 py-2 rounded-full text-sm tracking-wider transition-all duration-300
-              ${
-                active
-                  ? "bg-primary text-black"
-                  : "border border-primary/40 text-primary hover:bg-primary/10"
-              }`}
+                    ${
+                      active
+                        ? "bg-primary text-black"
+                        : "border border-primary/40 text-primary hover:bg-primary/10"
+                    }`}
                 >
                   {collection.name}
                 </button>
@@ -106,11 +120,11 @@ const Shop = () => {
             })}
           </div>
 
-          {/* Products Grid */}
+          {/* Products */}
           <AnimatePresence mode="wait">
             {filteredProducts.length > 0 ? (
               <motion.div
-                key={collectionFilter}
+                key={`${collectionFilter}-${moodFilter}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -129,7 +143,6 @@ const Shop = () => {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
                 className="text-center py-20"
               >
                 <p className="text-foreground/60 text-lg">
@@ -140,6 +153,7 @@ const Shop = () => {
           </AnimatePresence>
         </div>
       </main>
+
       <Footer />
     </div>
   );

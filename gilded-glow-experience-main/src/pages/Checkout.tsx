@@ -134,89 +134,15 @@ const Checkout = () => {
 
     // 2️⃣ Open Razorpay checkout
     const options = {
-      key: import.meta.env.VITE_RAZORPAY_KEY_ID, // test key
+      key: "rzp_test_SLD5MbTGojZO74",
       amount: order.amount,
       currency: "INR",
       name: "Candles & Giggles",
       description: "Luxury Candle Purchase",
       order_id: order.id,
 
-      handler: async function (response: any) {
-        try {
-          // ✅ Convert cart items to backend expected format
-          const formattedItems = cart.map((item: any) => ({
-            id: item.id,
-
-            name: item.name,
-
-            price: item.price,
-
-            quantity: item.quantity,
-
-            customizationsTotal: item.customizationsTotal || 0,
-
-            customizations: (item.customizations || []).map((cust: any) => ({
-              id: cust.type || cust.id,
-              name: cust.name,
-              price: cust.price,
-              message: cust.message || null, // ✅ ADD THIS
-              playlist: cust.playlist || null,
-            })),
-          }));
-
-          // 3️⃣ Verify payment on backend
-          const verifyRes = await fetch(
-            "https://backend-wghd.onrender.com/api/payment/verify-payment",
-            {
-              method: "POST",
-
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-
-                razorpay_payment_id: response.razorpay_payment_id,
-
-                razorpay_signature: response.razorpay_signature,
-
-                amount: grandTotal,
-
-                customer: formData,
-
-                // ✅ send formatted items
-                items: formattedItems,
-
-                redeemPoints: redeemPoints,
-              }),
-            },
-          );
-
-          if (!verifyRes.ok) {
-            const text = await verifyRes.text();
-            console.error("Verify API failed:", text);
-            toast.error("Payment verification failed");
-            return;
-          }
-
-          const result = await verifyRes.json();
-
-          if (result.success) {
-            if (result.user) loginUser(token, result.user);
-
-            clearCart();
-
-            navigate("/payment-success");
-          } else {
-            toast.error("Payment verification failed");
-          }
-        } catch (error) {
-          console.error("Payment Verify Error:", error);
-
-          toast.error("Something went wrong during payment verification");
-        }
+      handler: async function (response) {
+        console.log("PAYMENT SUCCESS:", response);
       },
 
       prefill: {
@@ -225,10 +151,15 @@ const Checkout = () => {
         contact: formData.phone,
       },
 
+      notes: {
+        source: "candlesngiggles.com",
+      },
+
       theme: {
         color: "#c9a24d",
       },
     };
+    console.log("RAZORPAY KEY:", import.meta.env.VITE_RAZORPAY_KEY_ID);
 
     const paymentObject = new (window as any).Razorpay(options);
     paymentObject.open();

@@ -77,7 +77,7 @@ const Cart = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="pt-32 pb-24 px-6">
+      <main className="pt-28 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -85,7 +85,7 @@ const Cart = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-light tracking-[0.15em] text-primary mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-[0.15em] text-primary mb-4">
               Your Cart
             </h1>
             <div className="luxury-divider mt-6" />
@@ -109,7 +109,7 @@ const Cart = () => {
               </Link>
             </motion.div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
               {/* Cart Items */}
               <div className="lg:col-span-2 space-y-6">
                 {cart.map((item, index) => {
@@ -131,9 +131,10 @@ const Cart = () => {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="luxury-card p-6"
                     >
-                      <div className="flex gap-6">
+                      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+                        {/* Product Image */}
                         <Link to={`/product/${item.id}`} className="shrink-0">
-                          <div className="w-24 h-24 overflow-hidden rounded-sm">
+                          <div className="w-full sm:w-24 h-40 sm:h-24 overflow-hidden rounded-sm">
                             <img
                               src={imageSrc}
                               alt={item.name}
@@ -141,56 +142,25 @@ const Cart = () => {
                             />
                           </div>
                         </Link>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-light tracking-[0.1em] text-primary mb-1">
+
+                        {/* Product Details */}
+                        <div className="flex-1 space-y-2 w-full">
+                          <h3 className="text-lg font-light tracking-[0.1em] text-primary">
                             {(item as any).selectedFragrance || item.fragrance}
                           </h3>
-                          <p className="text-foreground/60 text-sm font-light mb-1">
+
+                          <p className="text-foreground/60 text-sm font-light">
                             ₹{(item.price || 0).toLocaleString()}
                           </p>
 
                           {(item as any).selectedFragrance && (
-                            <p className="text-xs text-foreground/50 font-light mb-2">
+                            <p className="text-xs text-foreground/50 font-light">
                               Fragrance: {(item as any).selectedFragrance}
                             </p>
                           )}
 
-                          {/* Selected Customizations (Read-only) */}
-                          {itemCustomizations.map((cust: any) => {
-                            const label = customizationLabels[cust.type];
-
-                            if (!label) return null;
-
-                            const IconComponent = label.icon;
-
-                            return (
-                              <div
-                                key={cust.name}
-                                className="flex flex-col gap-1 px-3 py-2 bg-primary/10 border border-primary/20 rounded-sm text-xs"
-                              >
-                                <div className="flex items-center gap-1.5">
-                                  <IconComponent
-                                    size={12}
-                                    className="text-primary"
-                                  />
-
-                                  <span className="text-foreground/70 font-light">
-                                    {cust.name}
-                                  </span>
-                                </div>
-
-                                {/* show message */}
-
-                                {cust.message && (
-                                  <p className="ml-4 italic text-primary/80">
-                                    "{cust.message}"
-                                  </p>
-                                )}
-                              </div>
-                            );
-                          })}
-
-                          <div className="flex items-center gap-4">
+                          {/* Quantity Controls */}
+                          <div className="flex items-center justify-between sm:justify-start gap-4 mt-3">
                             <div className="flex items-center gap-2 border border-primary/20 rounded-sm">
                               <button
                                 onClick={() =>
@@ -200,9 +170,11 @@ const Cart = () => {
                               >
                                 <Minus size={14} className="text-primary" />
                               </button>
+
                               <span className="w-8 text-center text-foreground/80">
                                 {item.quantity}
                               </span>
+
                               <button
                                 onClick={() =>
                                   updateQuantity(item.id, item.quantity + 1)
@@ -212,6 +184,7 @@ const Cart = () => {
                                 <Plus size={14} className="text-primary" />
                               </button>
                             </div>
+
                             <button
                               onClick={() => removeFromCart(item.id)}
                               className="p-2 text-foreground/40 hover:text-destructive transition-colors"
@@ -220,10 +193,13 @@ const Cart = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="text-right">
+
+                        {/* Price */}
+                        <div className="text-right sm:text-right mt-2 sm:mt-0">
                           <p className="text-lg font-light text-primary">
                             ₹{(itemTotal || 0).toLocaleString()}
                           </p>
+
                           {itemCustomizationsTotal > 0 && (
                             <p className="text-xs text-foreground/50 font-light">
                               incl. ₹
@@ -281,7 +257,7 @@ const Cart = () => {
                 )}
 
                 {/* Order Summary Card */}
-                <div className="luxury-card p-8 sticky top-32">
+                <div className="luxury-card p-6 sm:p-8 lg:sticky lg:top-32">
                   <h3 className="text-xl font-light tracking-[0.1em] text-primary mb-6">
                     Order Summary
                   </h3>

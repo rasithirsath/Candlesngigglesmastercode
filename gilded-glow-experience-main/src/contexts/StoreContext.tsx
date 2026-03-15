@@ -204,7 +204,7 @@ export const products: Product[] = [
     originalPrice: 1499,
     image:
       "https://image2url.com/r2/default/images/1773296421569-15acf6bd-89f1-49ee-a900-aaad75ed09dc.png",
-    mood: "romantic",
+    mood: "sad",
     collection: "noor",
     burnTime: "28 hours",
   },
@@ -216,7 +216,7 @@ export const products: Product[] = [
     originalPrice: 1499,
     image:
       "https://image2url.com/r2/default/images/1773296538387-a278c5c1-26cb-4e5e-af8a-00d86401cbd1.blob",
-    mood: "romantic",
+    mood: "happy",
     collection: "noor",
     burnTime: "28 hours",
   },
@@ -228,7 +228,7 @@ export const products: Product[] = [
     originalPrice: 1999,
     image:
       "https://image2url.com/r2/default/images/1773296603527-596ec2ac-8eee-4c51-b620-1620c60fc732.png",
-    mood: "romantic",
+    mood: "happy",
     collection: "noor",
     burnTime: "28 hours",
   },
@@ -378,7 +378,7 @@ export const products: Product[] = [
     originalPrice: 1999,
     image:
       "https://image2url.com/r2/default/images/1773297408302-e4a0710d-e6e8-413e-9efb-245f196d7a02.png",
-    mood: "angry",
+    mood: "romantic",
     isBestSeller: true,
     collection: "amara",
     burnTime: "28 hours",
@@ -405,7 +405,7 @@ export const products: Product[] = [
     originalPrice: 1499,
     image:
       "https://image2url.com/r2/default/images/1773297518449-ff17bc50-b0f5-4388-a274-3564d1f54f90.png",
-    mood: "happy",
+    mood: "romantic",
     collection: "viella",
     burnTime: "28 hours",
   },
@@ -463,13 +463,30 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
 
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
-      const key = getCartKey(null);
-      const saved = localStorage.getItem(key);
-      return saved ? JSON.parse(saved) : [];
+      // Always check both guest and user cart
+      const guestCart = localStorage.getItem("candlesngiggles-cart");
+      const userCart = user
+        ? localStorage.getItem(`candlesngiggles-cart-${user.id}`)
+        : null;
+
+      if (userCart) return JSON.parse(userCart);
+      if (guestCart) return JSON.parse(guestCart);
+
+      return [];
     } catch {
       return [];
     }
   });
+  useEffect(() => {
+    try {
+      const key = getCartKey(user?.id ?? null);
+      const saved = localStorage.getItem(key);
+
+      if (saved) {
+        setCart(JSON.parse(saved));
+      }
+    } catch {}
+  }, [user]);
 
   const [wishlist, setWishlist] = useState<Product[]>(() => {
     try {
@@ -484,10 +501,16 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
   // Persist cart/wishlist to the appropriate per-user key whenever they change
   useEffect(() => {
     try {
-      const key = getCartKey(user?.id ?? null);
-      localStorage.setItem(key, JSON.stringify(cart));
+      if (user) {
+        localStorage.setItem(
+          `candlesngiggles-cart-${user.id}`,
+          JSON.stringify(cart),
+        );
+      } else {
+        localStorage.setItem("candlesngiggles-cart", JSON.stringify(cart));
+      }
     } catch {}
-  }, [cart, user?.id]);
+  }, [cart, user]);
 
   useEffect(() => {
     try {
@@ -501,7 +524,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
 
   // When user is logged in, persist cart and wishlist to server
   useEffect(() => {
-    if (!user || !token || !isServerSynced) return;
+    if (!user || !token) return;
 
     // Prevent saving if cart hasn't changed (avoids overwriting server data on login/refresh)
     if (cart === prevCartRef.current) return;
@@ -544,6 +567,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
         setIsServerSynced(false);
         try {
           const guestKey = getCartKey(null);
+          const userKey = getCartKey(currUser.id);
           let guest = [];
           try {
             guest = JSON.parse(localStorage.getItem(guestKey) || "[]");

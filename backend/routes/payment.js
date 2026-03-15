@@ -14,15 +14,26 @@ const razorpay = new Razorpay({
 
 // Create order (requires authentication)
 router.post("/create-order", auth, async (req, res) => {
-  const { amount } = req.body;
+  try {
+    const { amount } = req.body;
 
-  const order = await razorpay.orders.create({
-    amount: amount * 100,
-    currency: "INR",
-    receipt: "receipt_" + Date.now(),
-  });
+    if (!amount) {
+      return res.status(400).json({ error: "Amount is required" });
+    }
 
-  res.json(order);
+    const order = await razorpay.orders.create({
+      amount: Math.round(amount * 100),
+      currency: "INR",
+      receipt: "receipt_" + Date.now(),
+    });
+
+    console.log("RAZORPAY ORDER CREATED:", order);
+
+    res.json(order);
+  } catch (error) {
+    console.error("RAZORPAY ORDER ERROR:", error);
+    res.status(500).json({ error: "Failed to create Razorpay order" });
+  }
 });
 
 // Verify payment (requires authentication)
@@ -124,9 +135,7 @@ router.post("/verify-payment", auth, async (req, res) => {
       const result = user;
 
       if (result) {
-        console.log(
-          ` Awarded ${pointsEarned} points to user ${result.email}`,
-        );
+        console.log(` Awarded ${pointsEarned} points to user ${result.email}`);
         console.log(`✅ New point total: ${result.rewardPoints}`);
         // Store points data to send in email
         pointsData = {
