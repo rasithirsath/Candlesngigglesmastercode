@@ -178,10 +178,12 @@ const Checkout = () => {
           if (data.success) {
             toast.success("Payment successful!");
 
-            // update user points in frontend
             if (data.user) {
+              const token = localStorage.getItem("token");
+
               localStorage.setItem("user", JSON.stringify(data.user));
-              loginUser(data.user); // update auth context
+
+              loginUser(token, data.user); // update auth context everywhere
             }
 
             clearCart();
