@@ -134,7 +134,7 @@ const Checkout = () => {
 
     // 2️⃣ Open Razorpay checkout
     const options = {
-      key: "rzp_test_SLD5MbTGojZO74",
+      key: "rzp_live_SFJSDKFNsb4CKO",
       amount: order.amount,
       currency: "INR",
       name: "Candles & Giggles",
