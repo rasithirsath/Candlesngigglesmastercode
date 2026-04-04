@@ -72,7 +72,7 @@ const Shop = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="pt-32 pb-24 px-6">
+      <main className="pt-40 md:pt-44 pb-24 px-6">
         <div className="container mx-auto max-w-6xl">
           {/* Header */}
           <motion.div

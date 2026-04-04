@@ -98,7 +98,7 @@ const Navbar = () => {
                 <img
                   src="/logo/candlesngiggles-logo-1.png"
                   alt="candlesngiggles logo"
-                  className="h-32 sm:h-36 md:h-40 lg:h-48 w-auto transition-all duration-500 group-hover:scale-105"
+                  className="h-24 sm:h-28 md:h-32 lg:h-36 w-auto transition-all duration-500 group-hover:scale-105"
                 />
               </Link>
             </div>

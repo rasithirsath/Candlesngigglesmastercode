@@ -74,7 +74,9 @@ const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
           {/* Wishlist Button */}
           <button
             onClick={handleWishlist}
-            className="absolute top-4 right-4 z-10 p-2 bg-background/50 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-primary/20"
+            className={`absolute top-4 z-20 p-2 bg-background/50 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-primary/20 ${
+              product.stock <= 0 ? "right-20" : "right-4"
+            }`}
           >
             <Heart
               size={18}
@@ -92,6 +94,14 @@ const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
               loading="lazy"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
+
+            {product.stock <= 0 && (
+              <div className="absolute top-0 right-0 z-20 w-40 h-40 pointer-events-none overflow-hidden">
+                <div className="absolute top-7 -right-16 rotate-45 bg-primary/90 backdrop-blur-md border border-primary/60 text-black/80 text-xs font-semibold tracking-[0.16em] px-16 py-2 whitespace-nowrap shadow-[0_10px_28px_rgba(0,0,0,0.4)]">
+                  OUT OF STOCK
+                </div>
+              </div>
+            )}
 
             {/* Gold Overlay */}
             <div

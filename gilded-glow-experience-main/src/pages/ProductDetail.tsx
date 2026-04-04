@@ -327,7 +327,7 @@ const ProductDetail = () => {
                   <ShoppingBag size={18} /> Add to Cart
                 </Button>
               ) : (
-                <div className="w-full text-center py-3 border border-primary/20 rounded-md text-foreground/60">
+                <div className="w-full text-center py-3 text-foreground/60">
                   Out of Stock
                 </div>
               )}

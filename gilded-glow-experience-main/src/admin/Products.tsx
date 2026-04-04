@@ -238,7 +238,7 @@ const Products = () => {
                     <TableCell>{product.id}</TableCell>
                     <TableCell>{product.name}</TableCell>
                     <TableCell>
-                      ?{Number(product.price || 0).toLocaleString()}
+                      ₹{Number(product.price || 0).toLocaleString()}
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
@@ -305,19 +305,26 @@ const Products = () => {
                 placeholder="ID"
                 value={form.id}
                 disabled={!!editingId}
-                onChange={(e) => setForm((prev) => ({ ...prev, id: e.target.value }))}
+                onChange={(e) =>
+                  setForm((prev) => ({ ...prev, id: e.target.value }))
+                }
               />
               <Input
                 placeholder="Name"
                 value={form.name}
-                onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
+                onChange={(e) =>
+                  setForm((prev) => ({ ...prev, name: e.target.value }))
+                }
               />
               <Input
                 placeholder="Price"
                 type="number"
                 value={form.price}
                 onChange={(e) =>
-                  setForm((prev) => ({ ...prev, price: Number(e.target.value) }))
+                  setForm((prev) => ({
+                    ...prev,
+                    price: Number(e.target.value),
+                  }))
                 }
               />
               <Input
@@ -334,7 +341,9 @@ const Products = () => {
               <Input
                 placeholder="Image URL"
                 value={form.image}
-                onChange={(e) => setForm((prev) => ({ ...prev, image: e.target.value }))}
+                onChange={(e) =>
+                  setForm((prev) => ({ ...prev, image: e.target.value }))
+                }
               />
               <Input
                 placeholder="Burn Time"
@@ -349,7 +358,10 @@ const Products = () => {
                 min={0}
                 value={form.stock}
                 onChange={(e) =>
-                  setForm((prev) => ({ ...prev, stock: Number(e.target.value) }))
+                  setForm((prev) => ({
+                    ...prev,
+                    stock: Number(e.target.value),
+                  }))
                 }
               />
               <Select
@@ -357,7 +369,8 @@ const Products = () => {
                 onValueChange={(value) =>
                   setForm((prev) => ({
                     ...prev,
-                    mood: value === "none" ? undefined : (value as Product["mood"]),
+                    mood:
+                      value === "none" ? undefined : (value as Product["mood"]),
                   }))
                 }
               >
@@ -411,7 +424,10 @@ const Products = () => {
                     }))
                   }
                 />
-                <label htmlFor="isBestSeller" className="text-sm text-foreground/80">
+                <label
+                  htmlFor="isBestSeller"
+                  className="text-sm text-foreground/80"
+                >
                   Mark as Best Seller
                 </label>
               </div>
