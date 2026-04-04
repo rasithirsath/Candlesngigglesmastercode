@@ -30,7 +30,7 @@ app.use(
       // allow temporarily to avoid frontend blocking
       return callback(null, true);
     },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   }),
@@ -59,6 +59,7 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/admin", adminOrders);
 app.use("/api/admin", require("./routes/admin"));
+app.use("/api/products", require("./routes/products"));
 
 // Start server
 const PORT = process.env.PORT || 5000;

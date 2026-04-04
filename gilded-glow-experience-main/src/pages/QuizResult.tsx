@@ -4,7 +4,7 @@ import { Sparkles, ShoppingBag, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { products, useStore } from "@/contexts/StoreContext";
+import { Product, useStore } from "@/contexts/StoreContext";
 import { toast } from "sonner";
 
 import candle1 from "@/assets/candle-1.jpeg";
@@ -21,7 +21,7 @@ const imageMap: Record<string, string> = {
 
 const QuizResult = () => {
   const location = useLocation();
-  const { addToCart } = useStore();
+  const { products, addToCart } = useStore();
   const { answers } = location.state || {};
 
   // Simple recommendation logic based on mood answer
@@ -47,9 +47,13 @@ const QuizResult = () => {
       "Channel your passion. These bold fragrances match your fierce spirit.",
   };
 
-  const handleAddToCart = (product: (typeof products)[0]) => {
-    addToCart(product);
-    toast.success(`${product.name} added to cart`);
+  const handleAddToCart = (product: Product) => {
+    const ok = addToCart(product);
+    if (ok) {
+      toast.success(`${product.name} added to cart`);
+    } else {
+      toast.error("This product is currently out of stock");
+    }
   };
 
   return (

@@ -21,6 +21,7 @@ import moodHappy from "@/assets/mood-happy.jpg";
 import moodRomantic from "@/assets/mood-romantic.jpg";
 import moodSad from "@/assets/mood-sad.jpg";
 import moodAngry from "@/assets/mood-angry.jpg";
+import flameLogo from "@/assets/flame-g.png";
 
 const Index = () => {
   const { products } = useStore();
@@ -204,6 +205,54 @@ const Index = () => {
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Partners */}
+      <section className="py-16 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-light tracking-[0.15em] text-primary mb-4">
+              Our Partners
+            </h2>
+            <div className="luxury-divider mt-6" />
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="p-8 flex items-center justify-center"
+            >
+              <img
+                src="https://image2url.com/r2/default/images/1775325490212-dc3177ba-440c-4b89-bbb6-b3dbcd7163ef.png"
+                alt="Partner Logo 1"
+                className="h-16 md:h-20 w-auto object-contain"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className=" p-8 flex items-center justify-center"
+            >
+              <img
+                src="https://image2url.com/r2/default/images/1775325533056-1cf5da76-3125-4701-a218-e3789b12e31e.png"
+                alt="Partner Logo 2"
+                className="h-16 md:h-20 w-auto object-contain"
+              />
+            </motion.div>
           </div>
         </div>
       </section>

@@ -39,8 +39,12 @@ const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
-    addToCart(product);
-    toast.success(`${product.name} added to cart`);
+    const ok = addToCart(product);
+    if (ok) {
+      toast.success(`${product.name} added to cart`);
+    } else {
+      toast.error("Out of stock");
+    }
   };
 
   const handleWishlist = (e: React.MouseEvent) => {
@@ -121,15 +125,21 @@ const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
                 ₹{product.price.toLocaleString()}
               </span>
             </div>
-            <Button
-              variant="luxuryOutline"
-              size="sm"
-              className="w-full"
-              onClick={handleAddToCart}
-            >
-              <ShoppingBag size={16} />
-              Add to Cart
-            </Button>
+            {product.stock > 0 ? (
+              <Button
+                variant="luxuryOutline"
+                size="sm"
+                className="w-full"
+                onClick={handleAddToCart}
+              >
+                <ShoppingBag size={16} />
+                Add to Cart
+              </Button>
+            ) : (
+              <div className="w-full text-center text-sm text-foreground/60 py-2 border border-primary/20 rounded-sm">
+                Out of Stock
+              </div>
+            )}
           </motion.div>
 
           {/* Border Glow */}

@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [stats, setStats] = useState<any>(null);
   const [orders, setOrders] = useState<any[]>([]);
   const [chartData, setChartData] = useState<any[]>([]);
+  const [lowStockProducts, setLowStockProducts] = useState<any[]>([]);
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -34,6 +35,16 @@ const Dashboard = () => {
         setOrders(data.recentOrders || []);
         setChartData(data.chart || []);
       });
+
+    fetch(
+      `${import.meta.env.VITE_API_URL || "https://backend-wghd.onrender.com/api"}/products`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const low = (data || []).filter((p: any) => Number(p.stock) < 10);
+        setLowStockProducts(low);
+      })
+      .catch(() => setLowStockProducts([]));
   }, []);
 
   if (!stats) return <AdminLayout>Loading...</AdminLayout>;
@@ -47,7 +58,7 @@ const Dashboard = () => {
 
           <div className="flex gap-4">
             <Button
-              onClick={() => (window.location.href = "/admin/inventory")}
+              onClick={() => (window.location.href = "/admin/products")}
               variant="heroFilled"
             >
               Inventory Management
@@ -151,9 +162,21 @@ const Dashboard = () => {
         <div className="luxury-card p-6">
           <h2 className="text-xl text-primary mb-4">Inventory Alerts</h2>
 
-          <p className="text-foreground/60">
-            Low stock alerts will appear here.
-          </p>
+          {lowStockProducts.length === 0 ? (
+            <p className="text-foreground/60">No low stock alerts.</p>
+          ) : (
+            <div className="space-y-2">
+              {lowStockProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="flex justify-between text-foreground/80 border-b border-primary/10 pb-2"
+                >
+                  <span>{product.name}</span>
+                  <span className="text-primary">Stock: {product.stock}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </AdminLayout>

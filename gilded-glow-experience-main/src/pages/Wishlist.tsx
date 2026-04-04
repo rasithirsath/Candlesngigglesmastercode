@@ -28,8 +28,12 @@ const Wishlist = () => {
   };
 
   const handleAddToCart = (product: (typeof wishlist)[0]) => {
-    addToCart(product);
-    toast.success(`${product.name} added to cart`);
+    const ok = addToCart(product);
+    if (ok) {
+      toast.success(`${product.name} added to cart`);
+    } else {
+      toast.error("Out of stock");
+    }
   };
 
   return (

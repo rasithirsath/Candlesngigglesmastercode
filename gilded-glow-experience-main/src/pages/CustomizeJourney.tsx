@@ -16,6 +16,7 @@ import SplashScreen from "@/components/SplashScreen";
 import { Textarea } from "@/components/ui/textarea";
 import { useStore, Product } from "@/contexts/StoreContext";
 import MoodFilter, { MoodCategory } from "@/components/MoodFilter";
+import { toast } from "sonner";
 
 import candle1 from "@/assets/candle-1.jpeg";
 import candle2 from "@/assets/candle-2.jpeg";
@@ -284,7 +285,7 @@ const CustomizeJourney = () => {
       customizationsTotal += selectedFlower.price;
     }
 
-    addToCart({
+    const ok = addToCart({
       ...selectedCandle,
 
       customizations,
@@ -292,7 +293,11 @@ const CustomizeJourney = () => {
       customizationsTotal,
     } as any);
 
-    navigate("/cart");
+    if (ok) {
+      navigate("/cart");
+    } else {
+      toast.error("This product is currently out of stock");
+    }
   };
 
   const canProceed = () => {

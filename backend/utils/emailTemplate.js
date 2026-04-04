@@ -55,6 +55,16 @@ ${item.name} × ${item.quantity}
 Payment ID: ${order.razorpayPaymentId}
 </p>
 
+<div style="margin-top:20px;padding:16px;border:1px solid #333;border-radius:6px;background:#151515">
+<p style="margin:0 0 8px 0;color:#d4af37;font-size:14px"><strong>Shipping Details</strong></p>
+<p style="margin:0;color:#ddd;line-height:1.6">
+<strong>Address:</strong> ${order.customer?.address || "-"}<br>
+<strong>Landmark:</strong> ${order.customer?.landmark || "-"}<br>
+<strong>City:</strong> ${order.customer?.city || "-"}<br>
+<strong>Pincode:</strong> ${order.customer?.pincode || "-"}
+</p>
+</div>
+
 ${
   pointsData
     ? `
@@ -126,7 +136,11 @@ New Order Received
 
 <strong>Name:</strong> ${order.customer.fullName}<br>
 <strong>Email:</strong> ${order.customer.email}<br>
-<strong>Phone:</strong> ${order.customer.phone}
+<strong>Phone:</strong> ${order.customer.phone}<br>
+<strong>Address:</strong> ${order.customer.address || "-"}<br>
+<strong>Landmark:</strong> ${order.customer.landmark || "-"}<br>
+<strong>City:</strong> ${order.customer.city || "-"}<br>
+<strong>Pincode:</strong> ${order.customer.pincode || "-"}
 
 </p>
 

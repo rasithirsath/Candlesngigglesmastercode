@@ -85,6 +85,7 @@ const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const {
     products,
+    productsLoading,
     addToCart,
     addToWishlist,
     removeFromWishlist,
@@ -126,6 +127,13 @@ const ProductDetail = () => {
     if (product) fetchReviews();
   }, [product]);
 
+  if (productsLoading)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading product...
+      </div>
+    );
+
   if (!product)
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -161,14 +169,18 @@ const ProductDetail = () => {
       };
     });
 
-    addToCart({
+    const ok = addToCart({
       ...product,
       selectedFragrance,
       customizations: selectedCustomizationObjects,
       customizationsTotal,
     });
 
-    toast.success("Added to cart ");
+    if (ok) {
+      toast.success("Added to cart ");
+    } else {
+      toast.error("This product is currently out of stock");
+    }
   };
   const handleSubmitReview = async () => {
     const token = localStorage.getItem("token");
@@ -310,9 +322,15 @@ const ProductDetail = () => {
                 })}
               </div>
 
-              <Button className="w-full" onClick={handleAddToCart}>
-                <ShoppingBag size={18} /> Add to Cart
-              </Button>
+              {product.stock > 0 ? (
+                <Button className="w-full" onClick={handleAddToCart}>
+                  <ShoppingBag size={18} /> Add to Cart
+                </Button>
+              ) : (
+                <div className="w-full text-center py-3 border border-primary/20 rounded-md text-foreground/60">
+                  Out of Stock
+                </div>
+              )}
             </div>
           </div>
         </div>

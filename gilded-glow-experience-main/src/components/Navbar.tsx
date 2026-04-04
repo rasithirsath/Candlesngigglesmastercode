@@ -96,9 +96,9 @@ const Navbar = () => {
             <div className="flex justify-center">
               <Link to="/" className="group">
                 <img
-                  src="/logo/candlesngiggles-logo.png"
+                  src="/logo/candlesngiggles-logo-1.png"
                   alt="candlesngiggles logo"
-                  className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto transition-all duration-500 group-hover:scale-105"
+                  className="h-32 sm:h-36 md:h-40 lg:h-48 w-auto transition-all duration-500 group-hover:scale-105"
                 />
               </Link>
             </div>

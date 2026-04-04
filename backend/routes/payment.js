@@ -2,6 +2,7 @@ const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const router = require("express").Router();
 const Order = require("../models/order");
+const Product = require("../models/product");
 const User = require("../models/user");
 const auth = require("../middleware/auth");
 const sendMail = require("../utils/sendmail");
@@ -62,6 +63,25 @@ router.post("/verify-payment", auth, async (req, res) => {
     return res.status(400).json({ success: false });
   }
 
+  // Validate stock before creating paid order
+  for (const item of items || []) {
+    const product = await Product.findOne({ id: item.id });
+
+    if (!product) {
+      return res.status(400).json({
+        success: false,
+        message: `Product not found for id ${item.id}`,
+      });
+    }
+
+    if (product.stock < item.quantity) {
+      return res.status(400).json({
+        success: false,
+        message: `${product.name} is out of stock for requested quantity`,
+      });
+    }
+  }
+
   // ✅ Save order
   const order = await Order.create({
     user: req.user.id,
@@ -72,6 +92,14 @@ router.post("/verify-payment", auth, async (req, res) => {
     items,
     status: "paid",
   });
+  // Decrement stock for each item after successful order save
+  for (const item of items || []) {
+    await Product.findOneAndUpdate(
+      { id: item.id },
+      { $inc: { stock: -item.quantity } },
+    );
+  }
+
   console.log(
     "🧾 SAVED ORDER CUSTOMIZATIONS:",
     JSON.stringify(order.items[0].customizations, null, 2),
@@ -186,3 +214,5 @@ router.post("/verify-payment", auth, async (req, res) => {
 });
 
 module.exports = router;
+
+

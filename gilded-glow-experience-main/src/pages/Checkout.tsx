@@ -54,6 +54,7 @@ const Checkout = () => {
     phone: "",
     email: "",
     address: "",
+    landmark: "",
     city: "",
     pincode: "",
   });
@@ -100,6 +101,32 @@ const Checkout = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       toast.error("Please fill all required fields correctly");
+      return;
+    }
+
+    // Validate latest stock right before payment
+    try {
+      const apiBase =
+        import.meta.env.VITE_API_URL || "https://backend-wghd.onrender.com/api";
+      const res = await fetch(`${apiBase}/products`);
+      if (!res.ok) throw new Error("Failed to validate stock");
+      const latestProducts = await res.json();
+
+      for (const item of cart) {
+        const latest = latestProducts.find((p: any) => p.id === item.id);
+        if (!latest) {
+          toast.error(`${item.name} is no longer available`);
+          return;
+        }
+        if (latest.stock < item.quantity) {
+          toast.error(
+            `${item.name} has only ${latest.stock} left. Please update cart quantity.`,
+          );
+          return;
+        }
+      }
+    } catch (error) {
+      toast.error("Unable to validate stock right now. Please try again.");
       return;
     }
 
@@ -265,7 +292,15 @@ const Checkout = () => {
                 Delivery Details
               </h2>
 
-              {["fullName", "phone", "email", "address", "city", "pincode"].map(
+              {[
+                "fullName",
+                "phone",
+                "email",
+                "address",
+                "landmark",
+                "city",
+                "pincode",
+              ].map(
                 (field) => (
                   <div key={field} className="space-y-2">
                     <Label
@@ -274,6 +309,8 @@ const Checkout = () => {
                     >
                       {field === "fullName"
                         ? "Full Name"
+                        : field === "landmark"
+                          ? "Landmark"
                         : field.charAt(0).toUpperCase() + field.slice(1)}
                     </Label>
                     <Input
@@ -300,6 +337,9 @@ const Checkout = () => {
               >
                 Pay Now — ₹{grandTotal.toLocaleString()}
               </Button>
+              <p className="mt-2 text-right text-xs text-foreground/60">
+                Powered By <span className="text-[#c9a24d]">Shiprocket</span>
+              </p>
             </motion.form>
 
             {/* Order Summary */}
@@ -368,3 +408,4 @@ const Checkout = () => {
 };
 
 export default Checkout;
+

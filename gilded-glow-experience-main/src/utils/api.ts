@@ -1,4 +1,5 @@
-const API = "https://backend-wghd.onrender.com/api";
+const API =
+  import.meta.env.VITE_API_URL || "https://backend-wghd.onrender.com/api";
 
 export const signup = async (data: {
   name: string;
